@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2020 at 10:23 AM
+-- Generation Time: Oct 13, 2020 at 11:43 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.2.31
 
@@ -118,7 +118,17 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (52, 6, 'status', 'select_dropdown', 'Status', 1, 1, 1, 1, 1, 1, '{\"default\":\"INACTIVE\",\"options\":{\"INACTIVE\":\"INACTIVE\",\"ACTIVE\":\"ACTIVE\"}}', 9),
 (53, 6, 'created_at', 'timestamp', 'Created At', 1, 1, 1, 0, 0, 0, NULL, 10),
 (54, 6, 'updated_at', 'timestamp', 'Updated At', 1, 0, 0, 0, 0, 0, NULL, 11),
-(55, 6, 'image', 'image', 'Page Image', 0, 1, 1, 1, 1, 1, NULL, 12);
+(55, 6, 'image', 'image', 'Page Image', 0, 1, 1, 1, 1, 1, NULL, 12),
+(56, 8, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(57, 8, 'question_1', 'text', 'Question 1', 1, 1, 1, 1, 1, 1, '{}', 2),
+(58, 8, 'question_2', 'text', 'Question 2', 1, 1, 1, 1, 1, 1, '{}', 3),
+(59, 8, 'question_3', 'text', 'Question 3', 1, 1, 1, 1, 1, 1, '{}', 4),
+(60, 8, 'question_4', 'text', 'Question 4', 1, 1, 1, 1, 1, 1, '{}', 5),
+(61, 8, 'question_order', 'number', 'Question Order', 1, 1, 1, 1, 1, 1, '{}', 6),
+(62, 8, 'description', 'text', 'Description', 0, 1, 1, 1, 1, 1, '{}', 7),
+(63, 8, 'is_active', 'radio_btn', 'Is Active', 1, 1, 1, 1, 1, 1, '{\"default\":\"Y\",\"options\":{\"Y\":\"Yes\",\"N\":\"No\"}}', 8),
+(64, 8, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 9),
+(65, 8, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 10);
 
 -- --------------------------------------------------------
 
@@ -154,7 +164,35 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, '', '', 1, 0, NULL, '2020-10-13 00:46:58', '2020-10-13 00:46:58'),
 (4, 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'TCG\\Voyager\\Models\\Category', NULL, '', '', 1, 0, NULL, '2020-10-13 00:47:12', '2020-10-13 00:47:12'),
 (5, 'posts', 'posts', 'Post', 'Posts', 'voyager-news', 'TCG\\Voyager\\Models\\Post', 'TCG\\Voyager\\Policies\\PostPolicy', '', '', 1, 0, NULL, '2020-10-13 00:47:13', '2020-10-13 00:47:13'),
-(6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2020-10-13 00:47:15', '2020-10-13 00:47:15');
+(6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2020-10-13 00:47:15', '2020-10-13 00:47:15'),
+(8, 'disc_questions', 'disc-questions', 'DISC Question', 'DISC Questions', NULL, 'App\\Models\\DiscQuestion', NULL, NULL, NULL, 1, 1, '{\"order_column\":\"question_order\",\"order_display_column\":\"question_1\",\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-10-13 02:01:29', '2020-10-13 02:15:44');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `disc_questions`
+--
+
+CREATE TABLE `disc_questions` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `question_1` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `question_2` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `question_3` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `question_4` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `question_order` int(11) NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_active` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Y',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `disc_questions`
+--
+
+INSERT INTO `disc_questions` (`id`, `question_1`, `question_2`, `question_3`, `question_4`, `question_order`, `description`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'aaaaaa', 'bbbbbbbbb', 'ccccccccccccc', 'dddddddddddddd', 1, '', 'Y', '2020-10-13 02:08:00', '2020-10-13 02:13:35'),
+(2, 'Gampangan, mudah setuju', 'Percaya, mudah percaya pada orang lain', 'Petualangan, mengambil resiko', 'Toleran menghormati', 2, '', 'Y', '2020-10-13 02:11:00', '2020-10-13 02:13:35');
 
 -- --------------------------------------------------------
 
@@ -203,18 +241,20 @@ CREATE TABLE `menu_items` (
 --
 
 INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class`, `color`, `parent_id`, `order`, `created_at`, `updated_at`, `route`, `parameters`) VALUES
-(1, 1, 'Dashboard', '', '_self', 'voyager-boat', NULL, NULL, 1, '2020-10-13 00:46:59', '2020-10-13 00:46:59', 'voyager.dashboard', NULL),
-(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 2, '2020-10-13 00:46:59', '2020-10-13 01:17:28', 'voyager.media.index', NULL),
-(3, 1, 'Users', '', '_self', 'voyager-person', NULL, 10, 2, '2020-10-13 00:47:00', '2020-10-13 01:18:25', 'voyager.users.index', NULL),
-(4, 1, 'Roles', '', '_self', 'voyager-lock', NULL, 10, 3, '2020-10-13 00:47:00', '2020-10-13 01:18:25', 'voyager.roles.index', NULL),
-(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 4, '2020-10-13 00:47:00', '2020-10-13 01:21:09', NULL, NULL),
+(1, 1, 'Dashboard', '', '_self', 'voyager-boat', '#000000', NULL, 1, '2020-10-13 00:46:59', '2020-10-13 02:06:02', 'voyager.dashboard', 'null'),
+(2, 1, 'Media', '', '_self', 'voyager-images', NULL, 5, 2, '2020-10-13 00:46:59', '2020-10-13 02:04:18', 'voyager.media.index', NULL),
+(3, 1, 'Users', '', '_self', 'voyager-person', '#000000', 10, 2, '2020-10-13 00:47:00', '2020-10-13 02:05:10', 'voyager.users.index', 'null'),
+(4, 1, 'Roles', '', '_self', 'voyager-lock', '#000000', 10, 3, '2020-10-13 00:47:00', '2020-10-13 02:05:27', 'voyager.roles.index', 'null'),
+(5, 1, 'Tools', '', '_self', 'voyager-tools', '#000000', NULL, 4, '2020-10-13 00:47:00', '2020-10-13 02:06:12', NULL, ''),
 (6, 1, 'Menu Builder', '', '_self', 'voyager-list', NULL, 5, 1, '2020-10-13 00:47:00', '2020-10-13 01:17:11', 'voyager.menus.index', NULL),
-(7, 1, 'Database', '', '_self', 'voyager-data', NULL, 5, 2, '2020-10-13 00:47:00', '2020-10-13 01:17:11', 'voyager.database.index', NULL),
-(8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 3, '2020-10-13 00:47:00', '2020-10-13 01:17:11', 'voyager.compass.index', NULL),
-(9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 4, '2020-10-13 00:47:00', '2020-10-13 01:17:11', 'voyager.bread.index', NULL),
-(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 3, '2020-10-13 00:47:00', '2020-10-13 01:21:09', 'voyager.settings.index', NULL),
-(14, 1, 'Hooks', '', '_self', 'voyager-hook', NULL, 5, 5, '2020-10-13 00:47:21', '2020-10-13 01:17:11', 'voyager.hooks', NULL),
-(15, 1, 'General', 'admin/settings', '_self', 'voyager-settings', '#000000', 10, 1, '2020-10-13 01:16:20', '2020-10-13 01:18:59', NULL, '');
+(7, 1, 'Database', '', '_self', 'voyager-data', '#000000', 5, 3, '2020-10-13 00:47:00', '2020-10-13 02:06:33', 'voyager.database.index', 'null'),
+(8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 4, '2020-10-13 00:47:00', '2020-10-13 02:04:18', 'voyager.compass.index', NULL),
+(9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 5, '2020-10-13 00:47:00', '2020-10-13 02:04:18', 'voyager.bread.index', NULL),
+(10, 1, 'Settings', '', '_self', 'voyager-settings', '#000000', NULL, 3, '2020-10-13 00:47:00', '2020-10-13 02:05:44', 'voyager.settings.index', 'null'),
+(14, 1, 'Hooks', '', '_self', 'voyager-hook', NULL, 5, 6, '2020-10-13 00:47:21', '2020-10-13 02:04:18', 'voyager.hooks', NULL),
+(15, 1, 'General', 'admin/settings', '_self', 'voyager-settings', '#000000', 10, 1, '2020-10-13 01:16:20', '2020-10-13 01:18:59', NULL, ''),
+(16, 1, 'Questions', '', '_self', 'voyager-question', '#000000', 17, 1, '2020-10-13 02:01:29', '2020-10-13 02:04:04', 'voyager.disc-questions.index', 'null'),
+(17, 1, 'D.I.S.C', '', '_self', NULL, '#000000', NULL, 2, '2020-10-13 02:03:11', '2020-10-13 02:04:11', NULL, '');
 
 -- --------------------------------------------------------
 
@@ -258,7 +298,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (23, '2016_01_01_000000_create_pages_table', 2),
 (24, '2016_01_01_000000_create_posts_table', 2),
 (25, '2016_02_15_204651_create_categories_table', 2),
-(26, '2017_04_11_000000_alter_post_nullable_fields_table', 2);
+(26, '2017_04_11_000000_alter_post_nullable_fields_table', 2),
+(29, '2020_10_13_084813_disc_question', 3);
 
 -- --------------------------------------------------------
 
@@ -352,7 +393,12 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (38, 'edit_pages', 'pages', '2020-10-13 00:47:16', '2020-10-13 00:47:16'),
 (39, 'add_pages', 'pages', '2020-10-13 00:47:16', '2020-10-13 00:47:16'),
 (40, 'delete_pages', 'pages', '2020-10-13 00:47:17', '2020-10-13 00:47:17'),
-(41, 'browse_hooks', NULL, '2020-10-13 00:47:21', '2020-10-13 00:47:21');
+(41, 'browse_hooks', NULL, '2020-10-13 00:47:21', '2020-10-13 00:47:21'),
+(42, 'browse_disc_questions', 'disc_questions', '2020-10-13 02:01:29', '2020-10-13 02:01:29'),
+(43, 'read_disc_questions', 'disc_questions', '2020-10-13 02:01:29', '2020-10-13 02:01:29'),
+(44, 'edit_disc_questions', 'disc_questions', '2020-10-13 02:01:29', '2020-10-13 02:01:29'),
+(45, 'add_disc_questions', 'disc_questions', '2020-10-13 02:01:29', '2020-10-13 02:01:29'),
+(46, 'delete_disc_questions', 'disc_questions', '2020-10-13 02:01:29', '2020-10-13 02:01:29');
 
 -- --------------------------------------------------------
 
@@ -409,7 +455,12 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (37, 1),
 (38, 1),
 (39, 1),
-(40, 1);
+(40, 1),
+(42, 1),
+(43, 1),
+(44, 1),
+(45, 1),
+(46, 1);
 
 -- --------------------------------------------------------
 
@@ -542,7 +593,39 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 (28, 'menu_items', 'title', 6, 'pt', 'Menus', '2020-10-13 00:47:19', '2020-10-13 00:47:19'),
 (29, 'menu_items', 'title', 7, 'pt', 'Base de dados', '2020-10-13 00:47:19', '2020-10-13 00:47:19'),
 (30, 'menu_items', 'title', 10, 'pt', 'Configurações', '2020-10-13 00:47:20', '2020-10-13 00:47:20'),
-(31, 'menu_items', 'title', 15, 'id', 'Umum', '2020-10-13 01:16:51', '2020-10-13 01:18:19');
+(31, 'menu_items', 'title', 15, 'id', 'Umum', '2020-10-13 01:16:51', '2020-10-13 01:18:19'),
+(32, 'menu_items', 'title', 17, 'id', 'D.I.S.C', '2020-10-13 02:03:11', '2020-10-13 02:03:11'),
+(33, 'menu_items', 'title', 16, 'id', 'Pertanyaan', '2020-10-13 02:03:43', '2020-10-13 02:03:53'),
+(34, 'menu_items', 'title', 3, 'id', 'Pengguna', '2020-10-13 02:04:35', '2020-10-13 02:05:10'),
+(35, 'menu_items', 'title', 4, 'id', 'Hak Akses', '2020-10-13 02:05:27', '2020-10-13 02:05:27'),
+(36, 'menu_items', 'title', 10, 'id', 'Pengaturan', '2020-10-13 02:05:44', '2020-10-13 02:05:44'),
+(37, 'menu_items', 'title', 1, 'id', 'Beranda', '2020-10-13 02:06:02', '2020-10-13 02:06:02'),
+(38, 'menu_items', 'title', 5, 'id', 'Alat', '2020-10-13 02:06:11', '2020-10-13 02:06:11'),
+(39, 'menu_items', 'title', 7, 'id', 'Basis Data', '2020-10-13 02:06:33', '2020-10-13 02:06:33'),
+(40, 'disc_questions', 'question_1', 1, 'id', 'Gampangan, mudah setuju', '2020-10-13 02:08:54', '2020-10-13 02:08:54'),
+(41, 'disc_questions', 'question_2', 1, 'id', 'Percaya, mudah percaya pada orang lain', '2020-10-13 02:08:54', '2020-10-13 02:08:54'),
+(42, 'disc_questions', 'question_3', 1, 'id', 'Petualangan, mengambil resiko', '2020-10-13 02:08:54', '2020-10-13 02:08:54'),
+(43, 'disc_questions', 'question_4', 1, 'id', 'Toleran menghormati', '2020-10-13 02:08:54', '2020-10-13 02:08:54'),
+(44, 'disc_questions', 'question_1', 1, 'en', 'aaaaaa', '2020-10-13 02:11:09', '2020-10-13 02:11:09'),
+(45, 'disc_questions', 'question_2', 1, 'en', 'bbbbbbbbb', '2020-10-13 02:11:09', '2020-10-13 02:11:09'),
+(46, 'disc_questions', 'question_3', 1, 'en', 'ccccccccccccc', '2020-10-13 02:11:10', '2020-10-13 02:11:10'),
+(47, 'disc_questions', 'question_4', 1, 'en', 'dddddddddddddd', '2020-10-13 02:11:10', '2020-10-13 02:11:10'),
+(48, 'disc_questions', 'question_1', 2, 'en', 'Easier', '2020-10-13 02:11:38', '2020-10-13 02:11:38'),
+(49, 'disc_questions', 'question_2', 2, 'en', 'Percaya, mudah percaya pada orang lain', '2020-10-13 02:11:38', '2020-10-13 02:11:38'),
+(50, 'disc_questions', 'question_3', 2, 'en', 'Petualangan, mengambil resiko', '2020-10-13 02:11:38', '2020-10-13 02:11:38'),
+(51, 'disc_questions', 'question_4', 2, 'en', 'Toleran menghormati', '2020-10-13 02:11:38', '2020-10-13 02:11:38'),
+(52, 'data_rows', 'display_name', 56, 'en', 'Id', '2020-10-13 02:13:13', '2020-10-13 02:13:13'),
+(53, 'data_rows', 'display_name', 57, 'en', 'Question 1', '2020-10-13 02:13:13', '2020-10-13 02:13:13'),
+(54, 'data_rows', 'display_name', 58, 'en', 'Question 2', '2020-10-13 02:13:13', '2020-10-13 02:13:13'),
+(55, 'data_rows', 'display_name', 59, 'en', 'Question 3', '2020-10-13 02:13:13', '2020-10-13 02:13:13'),
+(56, 'data_rows', 'display_name', 60, 'en', 'Question 4', '2020-10-13 02:13:14', '2020-10-13 02:13:14'),
+(57, 'data_rows', 'display_name', 61, 'en', 'Question Order', '2020-10-13 02:13:14', '2020-10-13 02:13:14'),
+(58, 'data_rows', 'display_name', 62, 'en', 'Description', '2020-10-13 02:13:14', '2020-10-13 02:13:14'),
+(59, 'data_rows', 'display_name', 63, 'en', 'Is Active', '2020-10-13 02:13:14', '2020-10-13 02:13:14'),
+(60, 'data_rows', 'display_name', 64, 'en', 'Created At', '2020-10-13 02:13:14', '2020-10-13 02:13:14'),
+(61, 'data_rows', 'display_name', 65, 'en', 'Updated At', '2020-10-13 02:13:14', '2020-10-13 02:13:14'),
+(62, 'data_types', 'display_name_singular', 8, 'en', 'DISC Question', '2020-10-13 02:13:14', '2020-10-13 02:13:14'),
+(63, 'data_types', 'display_name_plural', 8, 'en', 'DISC Questions', '2020-10-13 02:13:14', '2020-10-13 02:13:14');
 
 -- --------------------------------------------------------
 
@@ -568,7 +651,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Admin', 'admin@admin.com', 'users/default.png', '$2y$10$LZA2MfXNu/4PCofTGUXSMu.4Acn73bpRX.DbIon5xYPZHF2mDBz6y', '91tbrrpoREtUFwWIcpfh0UnekPAutqnBwhRaisg86Wdr3KzTiSuQYFVCmB6t', NULL, '2020-10-13 00:47:13', '2020-10-13 00:47:13');
+(1, 1, 'Budi Irwan Firmansyah', 'budi@l-essential.com', 'users/default.png', '$2y$10$K0VT56jyjwe/h.jr1m5tzuEJjXeg.xoLucUYwvkNoA9Q2K4NcW6me', 'aFXSQ3D3jvXbj0Oo0uh51fF5mrFGgnBGeKGKKHKh7LZ4hvcUaPjrnfmJPA9H', '{\"locale\":\"id\"}', '2020-10-13 00:47:13', '2020-10-13 02:16:37');
 
 -- --------------------------------------------------------
 
@@ -607,6 +690,12 @@ ALTER TABLE `data_types`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `data_types_name_unique` (`name`),
   ADD UNIQUE KEY `data_types_slug_unique` (`slug`);
+
+--
+-- Indexes for table `disc_questions`
+--
+ALTER TABLE `disc_questions`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `menus`
@@ -714,13 +803,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `disc_questions`
+--
+ALTER TABLE `disc_questions`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `menus`
@@ -732,13 +827,13 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `pages`
@@ -750,7 +845,7 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `posts`
@@ -774,7 +869,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `translations`
 --
 ALTER TABLE `translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `users`
