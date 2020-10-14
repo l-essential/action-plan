@@ -5,15 +5,17 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Chicco Test</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
         <style>
+            * {
+                box-sizing: border-box;
+            }
             html, body {
-                background-color: #fff;
                 color: #636b6f;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
@@ -21,11 +23,19 @@
                 margin: 0;
             }
 
+            html {
+                background: url('<?php echo asset('img/frame-2.jpg') ?>') no-repeat center center fixed;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+            }
+
             .full-height {
                 height: 100vh;
             }
 
             .flex-center {
+                top: -50px;
                 align-items: center;
                 display: flex;
                 justify-content: center;
@@ -46,7 +56,7 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 65px;
             }
 
             .links > a {
@@ -60,34 +70,59 @@
             }
 
             .m-b-md {
-                margin-bottom: 30px;
+                margin-bottom: 20px;
+            }
+        </style>
+
+        <style>
+            input {
+                outline: none;
+                border: none;
+            }
+
+            .input100 {
+                display: block;
+                width: 100%;
+                height: 100%;
+                padding: 0 40px 0 3px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                background-color: rgba(255,255,255, 0.0);
+                border-radius: 7px;
+            }
+
+            .trans-04 {
+                -webkit-transition: all 0.4s;
+                -o-transition: all 0.4s;
+                -moz-transition: all 0.4s;
+                transition: all 0.4s;
+            }
+
+            .input-code {
+                border: 1px solid #777;
+                padding: 14px 20px;
+                width: 250px;
+                margin: 0 auto;
             }
         </style>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
 
             <div class="content">
+                <div class="img">
+                    <img src="{{ asset('img/logo-lessential.png') }}" alt="Logo PT. L'Essential" width="100">
+                </div>
+
                 <div class="title m-b-md">
-                    Laravel
+                    Pyschotest Online
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <form action="" method="post">
+                        @csrf
+
+                        <input type="text" name="code" placeholder="Put your code here then press enter ..." class="input-code s2-txt1 placeholder0 input100 trans-04">
+                    </form>
                 </div>
             </div>
         </div>
