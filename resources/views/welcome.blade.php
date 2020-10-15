@@ -75,6 +75,17 @@
         </style>
 
         <style>
+            .title {
+                font-size: 50px;
+            }
+            .img {
+                margin-bottom: 10px;
+            }
+
+            .img img {
+                width: 130px;
+            }
+            
             input {
                 outline: none;
                 border: none;
@@ -100,8 +111,15 @@
             .input-code {
                 border: 1px solid #777;
                 padding: 14px 20px;
-                width: 250px;
+                width: 270px;
                 margin: 0 auto;
+            }
+            .or { margin: 10px 0px; font-weight: 600; color: #a9a9a9; }
+            .register a {
+                text-decoration: none;
+                font-weight: 600;
+                font-style: italic;
+                color: #7cb5c7;
             }
         </style>
     </head>
@@ -110,18 +128,24 @@
 
             <div class="content">
                 <div class="img">
-                    <img src="{{ asset('img/logo-lessential.png') }}" alt="Logo PT. L'Essential" width="100">
+                    <img src="{{ asset('img/chicco-test-brand.png') }}" alt="Logo PT. L'Essential">
                 </div>
 
                 <div class="title m-b-md">
-                    Pyschotest Online
+                    Online Psychology Test
                 </div>
 
                 <div class="links">
-                    <form action="" method="post">
+                    <form action="{{ url('app/listing') }}" method="get">
                         @csrf
 
-                        <input type="text" name="code" placeholder="Put your code here then press enter ..." class="input-code s2-txt1 placeholder0 input100 trans-04">
+                        <input type="text" name="code" autocomplete="off" placeholder="Put your code here then press enter ..." class="input-code s2-txt1 placeholder0 input100 trans-04">
+
+                        <div class="or"> or </div>
+
+                        <div class="register">
+                            <a href="">Register</a>
+                        </div>
                     </form>
                 </div>
             </div>

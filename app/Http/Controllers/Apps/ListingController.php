@@ -10,7 +10,11 @@ class ListingController extends Controller
     
     public function index()
     {
-        return view('')
+        # param 
+        $data = [];
+        $data['site_title'] = 'Listing Apps';
+
+        return view('apps/list')->with($data);
     }
 
 }
