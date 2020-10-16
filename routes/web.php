@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/app/listing', 'Apps\ListingController@index');
+Route::get('/app/disc', 'Apps\DiscController@index');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

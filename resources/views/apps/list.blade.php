@@ -60,7 +60,7 @@
             </div>
 
             <div class="btn-action">
-                <a href="{{ url('') }}" class="ui button fluid primary"> 
+                <a href="{{ url('app/disc?page=1') }}" class="ui button fluid primary"> 
                     Mulai Test 
                 </a>
             </div>
@@ -90,42 +90,6 @@
             </div>
         </div>
     </div>
-
-    <!-- <div class="ui items">
-
-        <div class="item">
-            <a class="ui tiny image">
-                <img src="{{ asset('img/apps/disc.jpg') }}">
-            </a>
-            <div class="middle aligned content">
-                <div class="header"> D.I.S.C </div>
-            </div>
-        </div>
-
-        <div class="item">
-            <div class="middle aligned content pr-10">
-                <div class="header">
-                    PAPIKOSTIK
-                </div>
-            </div>
-
-            <a class="ui tiny image">
-                <img src="{{ asset('img/apps/papikostik.png') }}">
-            </a>
-        </div>
-
-        <div class="item">
-            <a class="ui tiny image">
-                <img src="{{ asset('img/apps/cfit.jpg') }}">
-            </a>
-            <div class="middle aligned content">
-                <div class="header">
-                    CFIT
-                </div>
-            </div>
-        </div>
-
-    </div> -->
 
 </div>
 
