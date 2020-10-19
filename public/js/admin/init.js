@@ -1,0 +1,1 @@
+jQuery('.selectpicker').selectpicker();

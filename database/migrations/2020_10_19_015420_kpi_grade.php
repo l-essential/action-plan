@@ -25,7 +25,6 @@ class KpiGrade extends Migration
             $table->char('is_active', 1)->default('Y');
 
             $table->integer('kpi_order');
-
             $table->timestamps();
         });
     }

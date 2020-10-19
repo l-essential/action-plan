@@ -67,13 +67,13 @@ return [
             'sslmode' => 'prefer',
         ],
 
-        'sqlsrv' => [
+        'hris' => [
             'driver' => 'sqlsrv',
-            'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', '1433'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => env('HRIS_DB_HOST', 'localhost'),
+            'port' => env('HRIS_DB_PORT', '1433'),
+            'database' => env('HRIS_DB_DATABASE', 'forge'),
+            'username' => env('HRIS_DB_USERNAME', 'forge'),
+            'password' => env('HRIS_DB_PASSWORD', ''),
             'charset' => 'utf8',
             'prefix' => '',
         ],

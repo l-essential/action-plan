@@ -1,4 +1,4 @@
-<?php namespace App\Models;
+<?php namespace App\Models\Kpi;
 
 use Illuminate\Database\Eloquent\Model;
 use TCG\Voyager\Traits\Translatable;

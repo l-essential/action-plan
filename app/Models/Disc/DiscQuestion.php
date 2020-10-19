@@ -1,4 +1,4 @@
-<?php namespace App\Models;
+<?php namespace App\Models\Disc;
 
 use Illuminate\Database\Eloquent\Model;
 use TCG\Voyager\Traits\Translatable;
