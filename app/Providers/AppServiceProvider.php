@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use TCG\Voyager\Facades\Voyager;
+use App\Voyager\DepartmentField;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        Voyager::addFormField(DepartmentField::class);
     }
 }

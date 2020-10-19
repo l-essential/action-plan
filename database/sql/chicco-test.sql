@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 19, 2020 at 04:20 AM
+-- Generation Time: Oct 19, 2020 at 10:03 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.2.31
 
@@ -64,17 +64,17 @@ CREATE TABLE `data_rows` (
 --
 
 INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, `required`, `browse`, `read`, `edit`, `add`, `delete`, `details`, `order`) VALUES
-(1, 1, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
-(2, 1, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, NULL, 2),
-(3, 1, 'email', 'text', 'Email', 1, 1, 1, 1, 1, 1, NULL, 3),
-(4, 1, 'password', 'password', 'Password', 1, 0, 0, 1, 1, 0, NULL, 4),
-(5, 1, 'remember_token', 'text', 'Remember Token', 0, 0, 0, 0, 0, 0, NULL, 5),
-(6, 1, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 0, NULL, 6),
-(7, 1, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 7),
-(8, 1, 'avatar', 'image', 'Avatar', 0, 1, 1, 1, 1, 1, NULL, 8),
-(9, 1, 'user_belongsto_role_relationship', 'relationship', 'Role', 0, 1, 1, 1, 1, 0, '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsTo\",\"column\":\"role_id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"roles\",\"pivot\":0}', 10),
-(10, 1, 'user_belongstomany_role_relationship', 'relationship', 'Roles', 0, 1, 1, 1, 1, 0, '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"user_roles\",\"pivot\":\"1\",\"taggable\":\"0\"}', 11),
-(11, 1, 'settings', 'hidden', 'Settings', 0, 0, 0, 0, 0, 0, NULL, 12),
+(1, 1, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, '{}', 1),
+(2, 1, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"required|max:255\"}}', 3),
+(3, 1, 'email', 'text', 'Email', 1, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"required|email\"}}', 4),
+(4, 1, 'password', 'password', 'Password', 1, 0, 0, 1, 1, 0, '{}', 5),
+(5, 1, 'remember_token', 'text', 'Remember Token', 0, 0, 0, 0, 0, 0, '{}', 6),
+(6, 1, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 0, '{}', 7),
+(7, 1, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 8),
+(8, 1, 'avatar', 'image', 'Avatar', 0, 1, 1, 1, 1, 1, '{}', 9),
+(9, 1, 'user_belongsto_role_relationship', 'relationship', 'Role', 0, 1, 1, 1, 1, 0, '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsTo\",\"column\":\"role_id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"roles\",\"pivot\":\"0\",\"taggable\":\"0\"}', 11),
+(10, 1, 'user_belongstomany_role_relationship', 'relationship', 'Roles', 0, 1, 1, 1, 1, 0, '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"user_roles\",\"pivot\":\"1\",\"taggable\":\"0\"}', 12),
+(11, 1, 'settings', 'hidden', 'Settings', 0, 0, 0, 0, 0, 0, '{}', 13),
 (12, 2, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
 (13, 2, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, NULL, 2),
 (14, 2, 'created_at', 'timestamp', 'Created At', 0, 0, 0, 0, 0, 0, NULL, 3),
@@ -84,7 +84,7 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (18, 3, 'created_at', 'timestamp', 'Created At', 0, 0, 0, 0, 0, 0, NULL, 3),
 (19, 3, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 4),
 (20, 3, 'display_name', 'text', 'Display Name', 1, 1, 1, 1, 1, 1, NULL, 5),
-(21, 1, 'role_id', 'text', 'Role', 1, 1, 1, 1, 1, 1, NULL, 9),
+(21, 1, 'role_id', 'text', 'Role', 0, 1, 1, 1, 1, 1, '{}', 10),
 (22, 4, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
 (23, 4, 'parent_id', 'select_dropdown', 'Parent', 0, 0, 1, 1, 1, 1, '{\"default\":\"\",\"null\":\"\",\"options\":{\"\":\"-- None --\"},\"relationship\":{\"key\":\"id\",\"label\":\"name\"}}', 2),
 (24, 4, 'order', 'text', 'Order', 1, 1, 1, 1, 1, 1, '{\"default\":1}', 3),
@@ -131,13 +131,26 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (65, 8, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 10),
 (66, 10, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (67, 10, 'kpi_grade', 'text', 'Grade', 1, 1, 1, 1, 1, 1, '{}', 2),
-(68, 10, 'kpi_grade_from', 'number', 'Value From', 1, 1, 1, 1, 1, 1, '{}', 3),
-(69, 10, 'kpi_grade_until', 'number', 'Value Until', 1, 1, 1, 1, 1, 1, '{}', 4),
-(70, 10, 'description', 'text', 'Description', 0, 1, 1, 1, 1, 1, '{}', 5),
-(71, 10, 'is_active', 'radio_btn', 'Active', 1, 1, 1, 1, 1, 1, '{\"default\":\"Y\",\"options\":{\"Y\":\"Yes\",\"N\":\"No\"}}', 6),
+(68, 10, 'kpi_grade_from', 'number', 'Nilai dari', 1, 1, 1, 1, 1, 1, '{}', 3),
+(69, 10, 'kpi_grade_until', 'number', 'Nilai sampai', 1, 1, 1, 1, 1, 1, '{}', 4),
+(70, 10, 'description', 'text', 'Deskripsi', 0, 1, 1, 1, 1, 1, '{}', 5),
+(71, 10, 'is_active', 'radio_btn', 'Aktif', 1, 1, 1, 1, 1, 1, '{\"default\":\"Y\",\"options\":{\"Y\":\"Yes\",\"N\":\"No\"}}', 6),
 (72, 10, 'kpi_order', 'number', 'Order', 1, 1, 1, 1, 1, 1, '{\"default\":5}', 7),
-(73, 10, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 8),
-(74, 10, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 9);
+(73, 10, 'created_at', 'timestamp', 'Dibuat tanggal', 0, 1, 1, 1, 0, 1, '{}', 8),
+(74, 10, 'updated_at', 'timestamp', 'Diperbarui tanggal', 0, 0, 0, 0, 0, 0, '{}', 9),
+(75, 1, 'nik', 'text', 'NIK', 0, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"required|max:40\"}}', 2),
+(76, 12, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(77, 12, 'kpi_name', 'text_area', 'Sasaran Mutu / KPI', 1, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"required\"}}', 4),
+(78, 12, 'division_id', 'text', 'Divisi', 0, 0, 0, 0, 0, 0, '{}', 5),
+(79, 12, 'department_id', 'department_field', 'Departemen', 0, 1, 1, 1, 1, 1, '{}', 3),
+(80, 12, 'section_id', 'text', 'Seksi', 0, 0, 0, 0, 0, 0, '{}', 6),
+(81, 12, 'kpi_percentage', 'number', 'Persentase %', 1, 1, 1, 1, 1, 1, '{\"step\":\"0.01\"}', 7),
+(82, 12, 'kpi_target', 'text', 'Target %', 1, 1, 1, 1, 1, 1, '{\"step\":\"0.01\"}', 8),
+(83, 12, 'description', 'text', 'Deskripsi', 0, 1, 1, 1, 1, 1, '{}', 9),
+(84, 12, 'is_active', 'radio_btn', 'Aktif', 1, 1, 1, 1, 1, 1, '{\"default\":\"Y\",\"options\":{\"Y\":\"Yes\",\"N\":\"No\"}}', 10),
+(85, 12, 'kpi_order', 'hidden', 'Order', 0, 0, 0, 0, 0, 0, '{\"value\":5}', 11),
+(86, 12, 'created_at', 'timestamp', 'Dibuat tanggal', 0, 1, 1, 1, 0, 1, '{}', 12),
+(87, 12, 'updated_at', 'timestamp', 'Diperbarui tanggal', 0, 0, 0, 0, 0, 0, '{}', 13);
 
 -- --------------------------------------------------------
 
@@ -168,14 +181,15 @@ CREATE TABLE `data_types` (
 --
 
 INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `display_name_plural`, `icon`, `model_name`, `policy_name`, `controller`, `description`, `generate_permissions`, `server_side`, `details`, `created_at`, `updated_at`) VALUES
-(1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController', '', 1, 0, NULL, '2020-10-13 00:46:58', '2020-10-13 00:46:58'),
+(1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-10-13 00:46:58', '2020-10-18 20:22:33'),
 (2, 'menus', 'menus', 'Menu', 'Menus', 'voyager-list', 'TCG\\Voyager\\Models\\Menu', NULL, '', '', 1, 0, NULL, '2020-10-13 00:46:58', '2020-10-13 00:46:58'),
 (3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, '', '', 1, 0, NULL, '2020-10-13 00:46:58', '2020-10-13 00:46:58'),
 (4, 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'TCG\\Voyager\\Models\\Category', NULL, '', '', 1, 0, NULL, '2020-10-13 00:47:12', '2020-10-13 00:47:12'),
 (5, 'posts', 'posts', 'Post', 'Posts', 'voyager-news', 'TCG\\Voyager\\Models\\Post', 'TCG\\Voyager\\Policies\\PostPolicy', '', '', 1, 0, NULL, '2020-10-13 00:47:13', '2020-10-13 00:47:13'),
 (6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2020-10-13 00:47:15', '2020-10-13 00:47:15'),
-(8, 'disc_questions', 'disc-questions', 'DISC Question', 'DISC Questions', NULL, 'App\\Models\\DiscQuestion', NULL, NULL, NULL, 1, 1, '{\"order_column\":\"question_order\",\"order_display_column\":\"question_1\",\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-10-13 02:01:29', '2020-10-13 02:15:44'),
-(10, 'kpi_grades', 'kpi-grades', 'Kpi Grade', 'Kpi Grades', NULL, 'App\\Models\\KpiGrade', NULL, NULL, NULL, 1, 1, '{\"order_column\":\"kpi_order\",\"order_display_column\":\"kpi_grade\",\"order_direction\":\"asc\",\"default_search_key\":\"kpi_grade\",\"scope\":null}', '2020-10-18 19:07:05', '2020-10-18 19:15:28');
+(8, 'disc_questions', 'disc-questions', 'DISC Question', 'DISC Questions', NULL, 'App\\Models\\Disc\\DiscQuestion', NULL, NULL, NULL, 1, 1, '{\"order_column\":\"question_order\",\"order_display_column\":\"question_1\",\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-10-13 02:01:29', '2020-10-18 20:24:49'),
+(10, 'kpi_grades', 'kpi-grades', 'Grade', 'Grades', NULL, 'App\\Models\\Kpi\\KpiGrade', NULL, NULL, NULL, 1, 1, '{\"order_column\":\"kpi_order\",\"order_display_column\":\"kpi_grade\",\"order_direction\":\"asc\",\"default_search_key\":\"kpi_grade\",\"scope\":null}', '2020-10-18 19:07:05', '2020-10-18 21:26:32'),
+(12, 'kpi_departments', 'kpi-departments', 'KPI Department', 'KPI Departments', NULL, 'App\\Models\\Kpi\\KpiDepartment', NULL, NULL, NULL, 1, 1, '{\"order_column\":\"kpi_order\",\"order_display_column\":\"kpi_name\",\"order_direction\":\"asc\",\"default_search_key\":\"department_id\",\"scope\":\"currentUser\"}', '2020-10-18 21:42:37', '2020-10-19 01:02:43');
 
 -- --------------------------------------------------------
 
@@ -209,6 +223,39 @@ INSERT INTO `disc_questions` (`id`, `question_1`, `question_2`, `question_3`, `q
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kpi_departments`
+--
+
+CREATE TABLE `kpi_departments` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `kpi_name` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `division_id` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `department_id` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `section_id` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `kpi_percentage` double(8,2) NOT NULL,
+  `kpi_target` double(8,2) NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_active` varchar(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Y',
+  `kpi_order` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `kpi_departments`
+--
+
+INSERT INTO `kpi_departments` (`id`, `kpi_name`, `division_id`, `department_id`, `section_id`, `kpi_percentage`, `kpi_target`, `description`, `is_active`, `kpi_order`, `created_at`, `updated_at`) VALUES
+(1, 'Development Program sesuai dengan deadline yang telah disepakati', NULL, '303', NULL, 30.00, 100.00, '', 'Y', 1, '2020-10-18 23:17:41', '2020-10-19 00:04:10'),
+(3, 'Menyelesaikan permintaan pekerjaan (minor) & perbaikan IT selama 1x24 jam semenjak permintaan di sistem FPP (kecuali pekerjaan ke vendor & kecuali tidak ada order spare part)', NULL, '303', NULL, 30.00, 100.00, '', 'Y', 2, '2020-10-19 00:02:46', '2020-10-19 00:04:10'),
+(4, 'Melakukan perawatan IT hardware & software sesuai jadwal', NULL, '303', NULL, 15.00, 100.00, '', 'Y', 3, '2020-10-19 00:03:14', '2020-10-19 00:04:10'),
+(5, 'Down time Network IT < 15 menit per kejadian', NULL, '303', NULL, 15.00, 100.00, '', 'Y', 4, '2020-10-19 00:03:43', '2020-10-19 00:04:10'),
+(6, 'Melakukan backup data server dari server ke PC backup secara manual 1 bulan sekali sebelum tanggal 10 setiap bulannya', NULL, '303', NULL, 10.00, 100.00, '', 'Y', 5, '2020-10-19 00:03:59', '2020-10-19 00:04:10'),
+(7, 'Serah terima barang kurang dari 1x24 jam setelah dokumen di terima', NULL, '402', NULL, 50.00, 100.00, '', 'Y', NULL, '2020-10-19 00:20:17', '2020-10-19 00:20:17');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `kpi_grades`
 --
 
@@ -234,6 +281,24 @@ INSERT INTO `kpi_grades` (`id`, `kpi_grade`, `kpi_grade_from`, `kpi_grade_until`
 (3, 'C', 70, 79, '', 'Y', 3, '2020-10-18 19:15:59', '2020-10-18 19:16:23'),
 (4, 'D', 60, 69, '', 'Y', 4, '2020-10-18 19:16:07', '2020-10-18 19:16:23'),
 (5, 'E', 0, 59, '', 'Y', 5, '2020-10-18 19:16:17', '2020-10-18 19:16:17');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kpi_grade_levels`
+--
+
+CREATE TABLE `kpi_grade_levels` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `kpi_grade` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kpi_grade_from` int(11) NOT NULL,
+  `kpi_grade_until` int(11) NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_active` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Y',
+  `kpi_order` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -282,22 +347,23 @@ CREATE TABLE `menu_items` (
 --
 
 INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class`, `color`, `parent_id`, `order`, `created_at`, `updated_at`, `route`, `parameters`) VALUES
-(1, 1, 'Dashboard', '', '_self', 'voyager-boat', '#000000', NULL, 1, '2020-10-13 00:46:59', '2020-10-13 02:06:02', 'voyager.dashboard', 'null'),
+(1, 1, 'Beranda', '', '_self', 'voyager-boat', '#000000', NULL, 1, '2020-10-13 00:46:59', '2020-10-18 23:13:32', 'voyager.dashboard', 'null'),
 (2, 1, 'Media', '', '_self', 'voyager-images', NULL, 5, 2, '2020-10-13 00:46:59', '2020-10-13 02:04:18', 'voyager.media.index', NULL),
-(3, 1, 'Users', '', '_self', 'voyager-person', '#000000', 10, 2, '2020-10-13 00:47:00', '2020-10-13 02:05:10', 'voyager.users.index', 'null'),
-(4, 1, 'Roles', '', '_self', 'voyager-lock', '#000000', 10, 3, '2020-10-13 00:47:00', '2020-10-13 02:05:27', 'voyager.roles.index', 'null'),
+(3, 1, 'Pengguna', '', '_self', 'voyager-person', '#000000', 10, 2, '2020-10-13 00:47:00', '2020-10-18 23:13:54', 'voyager.users.index', 'null'),
+(4, 1, 'Hak Akses', '', '_self', 'voyager-lock', '#000000', 10, 3, '2020-10-13 00:47:00', '2020-10-18 23:14:03', 'voyager.roles.index', 'null'),
 (5, 1, 'Tools', '', '_self', 'voyager-tools', '#000000', NULL, 5, '2020-10-13 00:47:00', '2020-10-18 19:09:35', NULL, ''),
 (6, 1, 'Menu Builder', '', '_self', 'voyager-list', NULL, 5, 1, '2020-10-13 00:47:00', '2020-10-13 01:17:11', 'voyager.menus.index', NULL),
 (7, 1, 'Database', '', '_self', 'voyager-data', '#000000', 5, 3, '2020-10-13 00:47:00', '2020-10-13 02:06:33', 'voyager.database.index', 'null'),
 (8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 4, '2020-10-13 00:47:00', '2020-10-13 02:04:18', 'voyager.compass.index', NULL),
 (9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 5, '2020-10-13 00:47:00', '2020-10-13 02:04:18', 'voyager.bread.index', NULL),
-(10, 1, 'Settings', '', '_self', 'voyager-settings', '#000000', NULL, 4, '2020-10-13 00:47:00', '2020-10-18 19:09:35', 'voyager.settings.index', 'null'),
+(10, 1, 'Pengaturan', '', '_self', 'voyager-settings', '#000000', NULL, 4, '2020-10-13 00:47:00', '2020-10-18 23:13:43', NULL, ''),
 (14, 1, 'Hooks', '', '_self', 'voyager-hook', NULL, 5, 6, '2020-10-13 00:47:21', '2020-10-13 02:04:18', 'voyager.hooks', NULL),
 (15, 1, 'General', 'admin/settings', '_self', 'voyager-settings', '#000000', 10, 1, '2020-10-13 01:16:20', '2020-10-13 01:18:59', NULL, ''),
-(16, 1, 'Questions', '', '_self', 'voyager-question', '#000000', 17, 1, '2020-10-13 02:01:29', '2020-10-13 02:04:04', 'voyager.disc-questions.index', 'null'),
+(16, 1, 'Pertanyaan', '', '_self', 'voyager-question', '#000000', 17, 1, '2020-10-13 02:01:29', '2020-10-18 23:14:57', 'voyager.disc-questions.index', 'null'),
 (17, 1, 'D.I.S.C', '', '_self', 'voyager-file-code', '#000000', NULL, 3, '2020-10-13 02:03:11', '2020-10-18 19:11:08', NULL, ''),
 (18, 1, 'Master Grades', '', '_self', NULL, '#000000', 19, 1, '2020-10-18 19:07:05', '2020-10-18 19:13:22', 'voyager.kpi-grades.index', 'null'),
-(19, 1, 'KPI', '', '_self', 'voyager-trophy', '#000000', NULL, 2, '2020-10-18 19:08:39', '2020-10-18 19:10:23', NULL, '');
+(19, 1, 'KPI', '', '_self', 'voyager-trophy', '#000000', NULL, 2, '2020-10-18 19:08:39', '2020-10-18 19:10:23', NULL, ''),
+(21, 1, 'Master KPI Departemen', '', '_self', NULL, '#000000', 19, 2, '2020-10-18 21:42:37', '2020-10-18 21:43:36', 'voyager.kpi-departments.index', 'null');
 
 -- --------------------------------------------------------
 
@@ -344,7 +410,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (26, '2017_04_11_000000_alter_post_nullable_fields_table', 2),
 (29, '2020_10_13_084813_disc_question', 3),
 (30, '2020_10_16_095020_link_user_to_hris', 4),
-(32, '2020_10_19_015420_kpi_grade', 5);
+(32, '2020_10_19_015420_kpi_grade', 5),
+(33, '2020_10_19_024551_kpi_grade_level', 6),
+(34, '2020_10_19_042807_kpi_department', 6);
 
 -- --------------------------------------------------------
 
@@ -448,7 +516,13 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (48, 'read_kpi_grades', 'kpi_grades', '2020-10-18 19:07:05', '2020-10-18 19:07:05'),
 (49, 'edit_kpi_grades', 'kpi_grades', '2020-10-18 19:07:05', '2020-10-18 19:07:05'),
 (50, 'add_kpi_grades', 'kpi_grades', '2020-10-18 19:07:05', '2020-10-18 19:07:05'),
-(51, 'delete_kpi_grades', 'kpi_grades', '2020-10-18 19:07:05', '2020-10-18 19:07:05');
+(51, 'delete_kpi_grades', 'kpi_grades', '2020-10-18 19:07:05', '2020-10-18 19:07:05'),
+(52, 'browse_kpi_departments', 'kpi_departments', '2020-10-18 21:42:37', '2020-10-18 21:42:37'),
+(53, 'read_kpi_departments', 'kpi_departments', '2020-10-18 21:42:37', '2020-10-18 21:42:37'),
+(54, 'edit_kpi_departments', 'kpi_departments', '2020-10-18 21:42:37', '2020-10-18 21:42:37'),
+(55, 'add_kpi_departments', 'kpi_departments', '2020-10-18 21:42:37', '2020-10-18 21:42:37'),
+(56, 'delete_kpi_departments', 'kpi_departments', '2020-10-18 21:42:37', '2020-10-18 21:42:37'),
+(57, 'browse_all_kpi_departments', 'kpi_departments', '2020-10-19 06:48:04', '2020-10-19 06:48:11');
 
 -- --------------------------------------------------------
 
@@ -467,6 +541,8 @@ CREATE TABLE `permission_role` (
 
 INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (1, 1),
+(1, 2),
+(1, 3),
 (2, 1),
 (3, 1),
 (4, 1),
@@ -512,10 +588,32 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (45, 1),
 (46, 1),
 (47, 1),
+(47, 2),
 (48, 1),
+(48, 2),
 (49, 1),
+(49, 2),
 (50, 1),
-(51, 1);
+(50, 2),
+(51, 1),
+(51, 2),
+(52, 1),
+(52, 2),
+(52, 3),
+(53, 1),
+(53, 2),
+(53, 3),
+(54, 1),
+(54, 2),
+(54, 3),
+(55, 1),
+(55, 2),
+(55, 3),
+(56, 1),
+(56, 2),
+(56, 3),
+(57, 1),
+(57, 2);
 
 -- --------------------------------------------------------
 
@@ -561,7 +659,8 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id`, `name`, `display_name`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'Administrator', '2020-10-13 00:47:00', '2020-10-13 00:47:00'),
-(2, 'user', 'Normal User', '2020-10-13 00:47:00', '2020-10-13 00:47:00');
+(2, 'HR Manager & Sisdur Manager', 'HR Manager & Sisdur Manager', '2020-10-13 00:47:00', '2020-10-19 00:25:54'),
+(3, 'Manager', 'Manager / DEPT Head', '2020-10-19 00:21:38', '2020-10-19 00:21:38');
 
 -- --------------------------------------------------------
 
@@ -675,7 +774,7 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 (63, 'data_types', 'display_name_plural', 8, 'en', 'DISC Questions', '2020-10-13 02:13:14', '2020-10-13 02:13:14'),
 (64, 'menu_items', 'title', 17, 'en', 'D.I.S.C', '2020-10-13 21:47:04', '2020-10-13 21:47:04'),
 (65, 'menu_items', 'title', 19, 'en', 'KPI', '2020-10-18 19:08:39', '2020-10-18 19:08:39'),
-(67, 'menu_items', 'title', 18, 'en', 'Kpi Grades', '2020-10-18 19:09:25', '2020-10-18 19:09:25'),
+(67, 'menu_items', 'title', 18, 'en', 'Master Grades', '2020-10-18 19:09:25', '2020-10-18 21:26:55'),
 (68, 'data_rows', 'display_name', 66, 'en', 'Id', '2020-10-18 19:14:02', '2020-10-18 19:14:02'),
 (69, 'data_rows', 'display_name', 67, 'en', 'Grade', '2020-10-18 19:14:02', '2020-10-18 19:14:02'),
 (70, 'data_rows', 'display_name', 68, 'en', 'Value From', '2020-10-18 19:14:02', '2020-10-18 19:14:02'),
@@ -685,8 +784,44 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 (74, 'data_rows', 'display_name', 72, 'en', 'Order', '2020-10-18 19:14:02', '2020-10-18 19:14:02'),
 (75, 'data_rows', 'display_name', 73, 'en', 'Created At', '2020-10-18 19:14:02', '2020-10-18 19:14:02'),
 (76, 'data_rows', 'display_name', 74, 'en', 'Updated At', '2020-10-18 19:14:02', '2020-10-18 19:14:02'),
-(77, 'data_types', 'display_name_singular', 10, 'en', 'Kpi Grade', '2020-10-18 19:14:03', '2020-10-18 19:14:03'),
-(78, 'data_types', 'display_name_plural', 10, 'en', 'Kpi Grades', '2020-10-18 19:14:03', '2020-10-18 19:14:03');
+(77, 'data_types', 'display_name_singular', 10, 'en', 'Grade', '2020-10-18 19:14:03', '2020-10-18 21:25:45'),
+(78, 'data_types', 'display_name_plural', 10, 'en', 'Grades', '2020-10-18 19:14:03', '2020-10-18 21:25:45'),
+(89, 'data_rows', 'display_name', 1, 'en', 'ID', '2020-10-18 19:54:12', '2020-10-18 19:54:12'),
+(90, 'data_rows', 'display_name', 21, 'en', 'Role', '2020-10-18 19:54:12', '2020-10-18 19:54:12'),
+(91, 'data_rows', 'display_name', 2, 'en', 'Name', '2020-10-18 19:54:12', '2020-10-18 19:54:12'),
+(92, 'data_rows', 'display_name', 3, 'en', 'Email', '2020-10-18 19:54:12', '2020-10-18 19:54:12'),
+(93, 'data_rows', 'display_name', 8, 'en', 'Avatar', '2020-10-18 19:54:12', '2020-10-18 19:54:12'),
+(94, 'data_rows', 'display_name', 4, 'en', 'Password', '2020-10-18 19:54:12', '2020-10-18 19:54:12'),
+(95, 'data_rows', 'display_name', 5, 'en', 'Remember Token', '2020-10-18 19:54:12', '2020-10-18 19:54:12'),
+(96, 'data_rows', 'display_name', 11, 'en', 'Settings', '2020-10-18 19:54:12', '2020-10-18 19:54:12'),
+(97, 'data_rows', 'display_name', 6, 'en', 'Created At', '2020-10-18 19:54:12', '2020-10-18 19:54:12'),
+(98, 'data_rows', 'display_name', 7, 'en', 'Updated At', '2020-10-18 19:54:12', '2020-10-18 19:54:12'),
+(99, 'data_rows', 'display_name', 9, 'en', 'Role', '2020-10-18 19:54:12', '2020-10-18 19:54:12'),
+(100, 'data_rows', 'display_name', 10, 'en', 'Roles', '2020-10-18 19:54:12', '2020-10-18 19:54:12'),
+(101, 'data_types', 'display_name_singular', 1, 'en', 'User', '2020-10-18 19:54:12', '2020-10-18 19:54:12'),
+(102, 'data_types', 'display_name_plural', 1, 'en', 'Users', '2020-10-18 19:54:12', '2020-10-18 19:54:12'),
+(103, 'data_rows', 'display_name', 75, 'en', 'NIK', '2020-10-18 19:55:27', '2020-10-18 19:55:27'),
+(104, 'menu_items', 'title', 10, 'en', 'Settings', '2020-10-18 20:27:27', '2020-10-18 20:27:27'),
+(105, 'menu_items', 'title', 21, 'en', 'Master KPI Departments', '2020-10-18 21:43:26', '2020-10-18 21:43:26'),
+(106, 'data_rows', 'display_name', 76, 'en', 'Id', '2020-10-18 22:06:22', '2020-10-18 22:06:22'),
+(107, 'data_rows', 'display_name', 77, 'en', 'KPI Name', '2020-10-18 22:06:22', '2020-10-18 22:06:22'),
+(108, 'data_rows', 'display_name', 78, 'en', 'Division Id', '2020-10-18 22:06:22', '2020-10-18 22:06:22'),
+(109, 'data_rows', 'display_name', 79, 'en', 'Department Id', '2020-10-18 22:06:22', '2020-10-18 22:06:22'),
+(110, 'data_rows', 'display_name', 80, 'en', 'Section Id', '2020-10-18 22:06:22', '2020-10-18 22:06:22'),
+(111, 'data_rows', 'display_name', 81, 'en', 'KPI Percentage', '2020-10-18 22:06:22', '2020-10-18 22:06:22'),
+(112, 'data_rows', 'display_name', 82, 'en', 'KPI Target', '2020-10-18 22:06:22', '2020-10-18 22:06:22'),
+(113, 'data_rows', 'display_name', 83, 'en', 'Description', '2020-10-18 22:06:22', '2020-10-18 22:06:22'),
+(114, 'data_rows', 'display_name', 84, 'en', 'Is Active', '2020-10-18 22:06:22', '2020-10-18 22:06:22'),
+(115, 'data_rows', 'display_name', 85, 'en', 'Order', '2020-10-18 22:06:22', '2020-10-18 22:06:22'),
+(116, 'data_rows', 'display_name', 86, 'en', 'Created At', '2020-10-18 22:06:22', '2020-10-18 22:06:22'),
+(117, 'data_rows', 'display_name', 87, 'en', 'Updated At', '2020-10-18 22:06:22', '2020-10-18 22:06:22'),
+(118, 'data_types', 'display_name_singular', 12, 'en', 'KPI Department', '2020-10-18 22:06:22', '2020-10-18 22:06:22'),
+(119, 'data_types', 'display_name_plural', 12, 'en', 'KPI Departments', '2020-10-18 22:06:22', '2020-10-18 22:06:22'),
+(120, 'menu_items', 'title', 1, 'en', 'Dashboard', '2020-10-18 23:13:32', '2020-10-18 23:13:32'),
+(121, 'menu_items', 'title', 3, 'en', 'Users', '2020-10-18 23:13:54', '2020-10-18 23:13:54'),
+(122, 'menu_items', 'title', 4, 'en', 'Roles', '2020-10-18 23:14:03', '2020-10-18 23:14:03'),
+(123, 'menu_items', 'title', 16, 'en', 'Questions', '2020-10-18 23:14:57', '2020-10-18 23:14:57'),
+(124, 'data_rows', 'display_name', 88, 'en', 'Department', '2020-10-19 00:44:24', '2020-10-19 00:52:46');
 
 -- --------------------------------------------------------
 
@@ -713,7 +848,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `nik`) VALUES
-(1, 1, 'Budi Irwan Firmansyah', 'budi@l-essential.com', 'users/default.png', '$2y$10$K0VT56jyjwe/h.jr1m5tzuEJjXeg.xoLucUYwvkNoA9Q2K4NcW6me', 'aFXSQ3D3jvXbj0Oo0uh51fF5mrFGgnBGeKGKKHKh7LZ4hvcUaPjrnfmJPA9H', '{\"locale\":\"id\"}', '2020-10-13 00:47:13', '2020-10-13 02:16:37', NULL);
+(1, 1, 'Budi Irwan Firmansyah', 'budi@l-essential.com', 'users/default.png', '$2y$10$K0VT56jyjwe/h.jr1m5tzuEJjXeg.xoLucUYwvkNoA9Q2K4NcW6me', 'IkT4ZgBMLHp2hLNygJOQBfHKQYPTWWOxkNoG4e6SnQVlxxpYyYufKU7JQbkA', '{\"locale\":\"id\"}', '2020-10-13 00:47:13', '2020-10-19 00:00:33', '2019072843'),
+(2, 1, 'Joko Yuana', 'joko@l-essential.com', 'users/default.png', '$2y$10$qRTjsDscWYt28mk9iAlAgea4jT5bX72pZt3Tn49z3fquCDFmegvV2', 'NTRL82doJNWuUgAETjU9xHaCfHlBZiGkwfXTnn8D82f6ssUT4jsfzh9bV8mB', '{\"locale\":\"id\"}', '2020-10-18 20:47:25', '2020-10-18 23:12:02', '2011010489'),
+(3, 3, 'Denny Rachmadi', 'denny@l-essential.com', 'users/default.png', '$2y$10$Immf7OQpXuYvyOEA4KrQAOystKqrlrtLr5Je6qqB7XvQNLIndv53q', NULL, '{\"locale\":\"id\"}', '2020-10-19 00:20:52', '2020-10-19 00:22:45', '2019062814'),
+(4, 2, 'Chicco Aridondo Azis', 'chicco@l-essential.com', 'users/default.png', '$2y$10$o2mSwtDshNNt4WxDz8tTCez8aQh6sC63C7pFW0qSaWNr0.Snmb/fW', '7qhAJdprT0Dv5T81Nemp534htzf1KZ8hUDDoNmMNpgxhtyWpgpC8T4FSVbrA', '{\"locale\":\"id\"}', '2020-10-19 00:27:37', '2020-10-19 00:27:37', '2020010018');
 
 -- --------------------------------------------------------
 
@@ -760,9 +898,21 @@ ALTER TABLE `disc_questions`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `kpi_departments`
+--
+ALTER TABLE `kpi_departments`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `kpi_grades`
 --
 ALTER TABLE `kpi_grades`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kpi_grade_levels`
+--
+ALTER TABLE `kpi_grade_levels`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -871,13 +1021,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT for table `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `disc_questions`
@@ -886,10 +1036,22 @@ ALTER TABLE `disc_questions`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `kpi_departments`
+--
+ALTER TABLE `kpi_departments`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `kpi_grades`
 --
 ALTER TABLE `kpi_grades`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `kpi_grade_levels`
+--
+ALTER TABLE `kpi_grade_levels`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `menus`
@@ -901,13 +1063,13 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `pages`
@@ -919,7 +1081,7 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `posts`
@@ -931,7 +1093,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -943,13 +1105,13 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `translations`
 --
 ALTER TABLE `translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
