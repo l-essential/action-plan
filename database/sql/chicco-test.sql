@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2020 at 11:43 AM
+-- Generation Time: Oct 19, 2020 at 04:20 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.2.31
 
@@ -128,7 +128,16 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (62, 8, 'description', 'text', 'Description', 0, 1, 1, 1, 1, 1, '{}', 7),
 (63, 8, 'is_active', 'radio_btn', 'Is Active', 1, 1, 1, 1, 1, 1, '{\"default\":\"Y\",\"options\":{\"Y\":\"Yes\",\"N\":\"No\"}}', 8),
 (64, 8, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 9),
-(65, 8, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 10);
+(65, 8, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 10),
+(66, 10, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(67, 10, 'kpi_grade', 'text', 'Grade', 1, 1, 1, 1, 1, 1, '{}', 2),
+(68, 10, 'kpi_grade_from', 'number', 'Value From', 1, 1, 1, 1, 1, 1, '{}', 3),
+(69, 10, 'kpi_grade_until', 'number', 'Value Until', 1, 1, 1, 1, 1, 1, '{}', 4),
+(70, 10, 'description', 'text', 'Description', 0, 1, 1, 1, 1, 1, '{}', 5),
+(71, 10, 'is_active', 'radio_btn', 'Active', 1, 1, 1, 1, 1, 1, '{\"default\":\"Y\",\"options\":{\"Y\":\"Yes\",\"N\":\"No\"}}', 6),
+(72, 10, 'kpi_order', 'number', 'Order', 1, 1, 1, 1, 1, 1, '{\"default\":5}', 7),
+(73, 10, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 8),
+(74, 10, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 9);
 
 -- --------------------------------------------------------
 
@@ -165,7 +174,8 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (4, 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'TCG\\Voyager\\Models\\Category', NULL, '', '', 1, 0, NULL, '2020-10-13 00:47:12', '2020-10-13 00:47:12'),
 (5, 'posts', 'posts', 'Post', 'Posts', 'voyager-news', 'TCG\\Voyager\\Models\\Post', 'TCG\\Voyager\\Policies\\PostPolicy', '', '', 1, 0, NULL, '2020-10-13 00:47:13', '2020-10-13 00:47:13'),
 (6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2020-10-13 00:47:15', '2020-10-13 00:47:15'),
-(8, 'disc_questions', 'disc-questions', 'DISC Question', 'DISC Questions', NULL, 'App\\Models\\DiscQuestion', NULL, NULL, NULL, 1, 1, '{\"order_column\":\"question_order\",\"order_display_column\":\"question_1\",\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-10-13 02:01:29', '2020-10-13 02:15:44');
+(8, 'disc_questions', 'disc-questions', 'DISC Question', 'DISC Questions', NULL, 'App\\Models\\DiscQuestion', NULL, NULL, NULL, 1, 1, '{\"order_column\":\"question_order\",\"order_display_column\":\"question_1\",\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-10-13 02:01:29', '2020-10-13 02:15:44'),
+(10, 'kpi_grades', 'kpi-grades', 'Kpi Grade', 'Kpi Grades', NULL, 'App\\Models\\KpiGrade', NULL, NULL, NULL, 1, 1, '{\"order_column\":\"kpi_order\",\"order_display_column\":\"kpi_grade\",\"order_direction\":\"asc\",\"default_search_key\":\"kpi_grade\",\"scope\":null}', '2020-10-18 19:07:05', '2020-10-18 19:15:28');
 
 -- --------------------------------------------------------
 
@@ -191,8 +201,39 @@ CREATE TABLE `disc_questions` (
 --
 
 INSERT INTO `disc_questions` (`id`, `question_1`, `question_2`, `question_3`, `question_4`, `question_order`, `description`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'aaaaaa', 'bbbbbbbbb', 'ccccccccccccc', 'dddddddddddddd', 1, '', 'Y', '2020-10-13 02:08:00', '2020-10-13 02:13:35'),
-(2, 'Gampangan, mudah setuju', 'Percaya, mudah percaya pada orang lain', 'Petualangan, mengambil resiko', 'Toleran menghormati', 2, '', 'Y', '2020-10-13 02:11:00', '2020-10-13 02:13:35');
+(2, 'Gampangan, mudah setuju', 'Percaya, mudah percaya pada orang lain', 'Petualangan, mengambil resiko', 'Toleran menghormati', 3, '', 'Y', '2020-10-13 02:11:00', '2020-10-15 21:20:12'),
+(3, 'Lembut suara, pendiam', 'Optimistik, visioner', 'Pusat perhatian, suka gaul', 'Pendamai, membawa harmoni', 2, '', 'Y', '2020-10-15 21:16:00', '2020-10-15 21:20:12'),
+(4, 'Menyemangati orang', 'Berusaha sempurna', 'Bagian dari kelompok', 'Ingin membuat tujuan', 1, '3', 'Y', '2020-10-15 21:16:40', '2020-10-15 21:20:12'),
+(5, 'Menjadi frustasi', 'Menyimpan perasaan saya', 'Menceritakan sisi saya', 'Siap beroposisi', 4, '', 'Y', '2020-10-15 21:19:57', '2020-10-15 21:20:12');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kpi_grades`
+--
+
+CREATE TABLE `kpi_grades` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `kpi_grade` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kpi_grade_from` int(11) NOT NULL,
+  `kpi_grade_until` int(11) NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_active` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Y',
+  `kpi_order` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `kpi_grades`
+--
+
+INSERT INTO `kpi_grades` (`id`, `kpi_grade`, `kpi_grade_from`, `kpi_grade_until`, `description`, `is_active`, `kpi_order`, `created_at`, `updated_at`) VALUES
+(1, 'A', 90, 100, '', 'Y', 1, '2020-10-18 19:14:41', '2020-10-18 19:14:41'),
+(2, 'B', 80, 89, '', 'Y', 2, '2020-10-18 19:15:46', '2020-10-18 19:16:23'),
+(3, 'C', 70, 79, '', 'Y', 3, '2020-10-18 19:15:59', '2020-10-18 19:16:23'),
+(4, 'D', 60, 69, '', 'Y', 4, '2020-10-18 19:16:07', '2020-10-18 19:16:23'),
+(5, 'E', 0, 59, '', 'Y', 5, '2020-10-18 19:16:17', '2020-10-18 19:16:17');
 
 -- --------------------------------------------------------
 
@@ -245,16 +286,18 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class
 (2, 1, 'Media', '', '_self', 'voyager-images', NULL, 5, 2, '2020-10-13 00:46:59', '2020-10-13 02:04:18', 'voyager.media.index', NULL),
 (3, 1, 'Users', '', '_self', 'voyager-person', '#000000', 10, 2, '2020-10-13 00:47:00', '2020-10-13 02:05:10', 'voyager.users.index', 'null'),
 (4, 1, 'Roles', '', '_self', 'voyager-lock', '#000000', 10, 3, '2020-10-13 00:47:00', '2020-10-13 02:05:27', 'voyager.roles.index', 'null'),
-(5, 1, 'Tools', '', '_self', 'voyager-tools', '#000000', NULL, 4, '2020-10-13 00:47:00', '2020-10-13 02:06:12', NULL, ''),
+(5, 1, 'Tools', '', '_self', 'voyager-tools', '#000000', NULL, 5, '2020-10-13 00:47:00', '2020-10-18 19:09:35', NULL, ''),
 (6, 1, 'Menu Builder', '', '_self', 'voyager-list', NULL, 5, 1, '2020-10-13 00:47:00', '2020-10-13 01:17:11', 'voyager.menus.index', NULL),
 (7, 1, 'Database', '', '_self', 'voyager-data', '#000000', 5, 3, '2020-10-13 00:47:00', '2020-10-13 02:06:33', 'voyager.database.index', 'null'),
 (8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 4, '2020-10-13 00:47:00', '2020-10-13 02:04:18', 'voyager.compass.index', NULL),
 (9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 5, '2020-10-13 00:47:00', '2020-10-13 02:04:18', 'voyager.bread.index', NULL),
-(10, 1, 'Settings', '', '_self', 'voyager-settings', '#000000', NULL, 3, '2020-10-13 00:47:00', '2020-10-13 02:05:44', 'voyager.settings.index', 'null'),
+(10, 1, 'Settings', '', '_self', 'voyager-settings', '#000000', NULL, 4, '2020-10-13 00:47:00', '2020-10-18 19:09:35', 'voyager.settings.index', 'null'),
 (14, 1, 'Hooks', '', '_self', 'voyager-hook', NULL, 5, 6, '2020-10-13 00:47:21', '2020-10-13 02:04:18', 'voyager.hooks', NULL),
 (15, 1, 'General', 'admin/settings', '_self', 'voyager-settings', '#000000', 10, 1, '2020-10-13 01:16:20', '2020-10-13 01:18:59', NULL, ''),
 (16, 1, 'Questions', '', '_self', 'voyager-question', '#000000', 17, 1, '2020-10-13 02:01:29', '2020-10-13 02:04:04', 'voyager.disc-questions.index', 'null'),
-(17, 1, 'D.I.S.C', '', '_self', NULL, '#000000', NULL, 2, '2020-10-13 02:03:11', '2020-10-13 02:04:11', NULL, '');
+(17, 1, 'D.I.S.C', '', '_self', 'voyager-file-code', '#000000', NULL, 3, '2020-10-13 02:03:11', '2020-10-18 19:11:08', NULL, ''),
+(18, 1, 'Master Grades', '', '_self', NULL, '#000000', 19, 1, '2020-10-18 19:07:05', '2020-10-18 19:13:22', 'voyager.kpi-grades.index', 'null'),
+(19, 1, 'KPI', '', '_self', 'voyager-trophy', '#000000', NULL, 2, '2020-10-18 19:08:39', '2020-10-18 19:10:23', NULL, '');
 
 -- --------------------------------------------------------
 
@@ -299,7 +342,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (24, '2016_01_01_000000_create_posts_table', 2),
 (25, '2016_02_15_204651_create_categories_table', 2),
 (26, '2017_04_11_000000_alter_post_nullable_fields_table', 2),
-(29, '2020_10_13_084813_disc_question', 3);
+(29, '2020_10_13_084813_disc_question', 3),
+(30, '2020_10_16_095020_link_user_to_hris', 4),
+(32, '2020_10_19_015420_kpi_grade', 5);
 
 -- --------------------------------------------------------
 
@@ -398,7 +443,12 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (43, 'read_disc_questions', 'disc_questions', '2020-10-13 02:01:29', '2020-10-13 02:01:29'),
 (44, 'edit_disc_questions', 'disc_questions', '2020-10-13 02:01:29', '2020-10-13 02:01:29'),
 (45, 'add_disc_questions', 'disc_questions', '2020-10-13 02:01:29', '2020-10-13 02:01:29'),
-(46, 'delete_disc_questions', 'disc_questions', '2020-10-13 02:01:29', '2020-10-13 02:01:29');
+(46, 'delete_disc_questions', 'disc_questions', '2020-10-13 02:01:29', '2020-10-13 02:01:29'),
+(47, 'browse_kpi_grades', 'kpi_grades', '2020-10-18 19:07:05', '2020-10-18 19:07:05'),
+(48, 'read_kpi_grades', 'kpi_grades', '2020-10-18 19:07:05', '2020-10-18 19:07:05'),
+(49, 'edit_kpi_grades', 'kpi_grades', '2020-10-18 19:07:05', '2020-10-18 19:07:05'),
+(50, 'add_kpi_grades', 'kpi_grades', '2020-10-18 19:07:05', '2020-10-18 19:07:05'),
+(51, 'delete_kpi_grades', 'kpi_grades', '2020-10-18 19:07:05', '2020-10-18 19:07:05');
 
 -- --------------------------------------------------------
 
@@ -460,7 +510,12 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (43, 1),
 (44, 1),
 (45, 1),
-(46, 1);
+(46, 1),
+(47, 1),
+(48, 1),
+(49, 1),
+(50, 1),
+(51, 1);
 
 -- --------------------------------------------------------
 
@@ -602,14 +657,6 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 (37, 'menu_items', 'title', 1, 'id', 'Beranda', '2020-10-13 02:06:02', '2020-10-13 02:06:02'),
 (38, 'menu_items', 'title', 5, 'id', 'Alat', '2020-10-13 02:06:11', '2020-10-13 02:06:11'),
 (39, 'menu_items', 'title', 7, 'id', 'Basis Data', '2020-10-13 02:06:33', '2020-10-13 02:06:33'),
-(40, 'disc_questions', 'question_1', 1, 'id', 'Gampangan, mudah setuju', '2020-10-13 02:08:54', '2020-10-13 02:08:54'),
-(41, 'disc_questions', 'question_2', 1, 'id', 'Percaya, mudah percaya pada orang lain', '2020-10-13 02:08:54', '2020-10-13 02:08:54'),
-(42, 'disc_questions', 'question_3', 1, 'id', 'Petualangan, mengambil resiko', '2020-10-13 02:08:54', '2020-10-13 02:08:54'),
-(43, 'disc_questions', 'question_4', 1, 'id', 'Toleran menghormati', '2020-10-13 02:08:54', '2020-10-13 02:08:54'),
-(44, 'disc_questions', 'question_1', 1, 'en', 'aaaaaa', '2020-10-13 02:11:09', '2020-10-13 02:11:09'),
-(45, 'disc_questions', 'question_2', 1, 'en', 'bbbbbbbbb', '2020-10-13 02:11:09', '2020-10-13 02:11:09'),
-(46, 'disc_questions', 'question_3', 1, 'en', 'ccccccccccccc', '2020-10-13 02:11:10', '2020-10-13 02:11:10'),
-(47, 'disc_questions', 'question_4', 1, 'en', 'dddddddddddddd', '2020-10-13 02:11:10', '2020-10-13 02:11:10'),
 (48, 'disc_questions', 'question_1', 2, 'en', 'Easier', '2020-10-13 02:11:38', '2020-10-13 02:11:38'),
 (49, 'disc_questions', 'question_2', 2, 'en', 'Percaya, mudah percaya pada orang lain', '2020-10-13 02:11:38', '2020-10-13 02:11:38'),
 (50, 'disc_questions', 'question_3', 2, 'en', 'Petualangan, mengambil resiko', '2020-10-13 02:11:38', '2020-10-13 02:11:38'),
@@ -625,7 +672,21 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 (60, 'data_rows', 'display_name', 64, 'en', 'Created At', '2020-10-13 02:13:14', '2020-10-13 02:13:14'),
 (61, 'data_rows', 'display_name', 65, 'en', 'Updated At', '2020-10-13 02:13:14', '2020-10-13 02:13:14'),
 (62, 'data_types', 'display_name_singular', 8, 'en', 'DISC Question', '2020-10-13 02:13:14', '2020-10-13 02:13:14'),
-(63, 'data_types', 'display_name_plural', 8, 'en', 'DISC Questions', '2020-10-13 02:13:14', '2020-10-13 02:13:14');
+(63, 'data_types', 'display_name_plural', 8, 'en', 'DISC Questions', '2020-10-13 02:13:14', '2020-10-13 02:13:14'),
+(64, 'menu_items', 'title', 17, 'en', 'D.I.S.C', '2020-10-13 21:47:04', '2020-10-13 21:47:04'),
+(65, 'menu_items', 'title', 19, 'en', 'KPI', '2020-10-18 19:08:39', '2020-10-18 19:08:39'),
+(67, 'menu_items', 'title', 18, 'en', 'Kpi Grades', '2020-10-18 19:09:25', '2020-10-18 19:09:25'),
+(68, 'data_rows', 'display_name', 66, 'en', 'Id', '2020-10-18 19:14:02', '2020-10-18 19:14:02'),
+(69, 'data_rows', 'display_name', 67, 'en', 'Grade', '2020-10-18 19:14:02', '2020-10-18 19:14:02'),
+(70, 'data_rows', 'display_name', 68, 'en', 'Value From', '2020-10-18 19:14:02', '2020-10-18 19:14:02'),
+(71, 'data_rows', 'display_name', 69, 'en', 'Value Until', '2020-10-18 19:14:02', '2020-10-18 19:14:02'),
+(72, 'data_rows', 'display_name', 70, 'en', 'Description', '2020-10-18 19:14:02', '2020-10-18 19:14:02'),
+(73, 'data_rows', 'display_name', 71, 'en', 'Active', '2020-10-18 19:14:02', '2020-10-18 19:14:02'),
+(74, 'data_rows', 'display_name', 72, 'en', 'Order', '2020-10-18 19:14:02', '2020-10-18 19:14:02'),
+(75, 'data_rows', 'display_name', 73, 'en', 'Created At', '2020-10-18 19:14:02', '2020-10-18 19:14:02'),
+(76, 'data_rows', 'display_name', 74, 'en', 'Updated At', '2020-10-18 19:14:02', '2020-10-18 19:14:02'),
+(77, 'data_types', 'display_name_singular', 10, 'en', 'Kpi Grade', '2020-10-18 19:14:03', '2020-10-18 19:14:03'),
+(78, 'data_types', 'display_name_plural', 10, 'en', 'Kpi Grades', '2020-10-18 19:14:03', '2020-10-18 19:14:03');
 
 -- --------------------------------------------------------
 
@@ -643,15 +704,16 @@ CREATE TABLE `users` (
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `settings` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `nik` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Budi Irwan Firmansyah', 'budi@l-essential.com', 'users/default.png', '$2y$10$K0VT56jyjwe/h.jr1m5tzuEJjXeg.xoLucUYwvkNoA9Q2K4NcW6me', 'aFXSQ3D3jvXbj0Oo0uh51fF5mrFGgnBGeKGKKHKh7LZ4hvcUaPjrnfmJPA9H', '{\"locale\":\"id\"}', '2020-10-13 00:47:13', '2020-10-13 02:16:37');
+INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `nik`) VALUES
+(1, 1, 'Budi Irwan Firmansyah', 'budi@l-essential.com', 'users/default.png', '$2y$10$K0VT56jyjwe/h.jr1m5tzuEJjXeg.xoLucUYwvkNoA9Q2K4NcW6me', 'aFXSQ3D3jvXbj0Oo0uh51fF5mrFGgnBGeKGKKHKh7LZ4hvcUaPjrnfmJPA9H', '{\"locale\":\"id\"}', '2020-10-13 00:47:13', '2020-10-13 02:16:37', NULL);
 
 -- --------------------------------------------------------
 
@@ -695,6 +757,12 @@ ALTER TABLE `data_types`
 -- Indexes for table `disc_questions`
 --
 ALTER TABLE `disc_questions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kpi_grades`
+--
+ALTER TABLE `kpi_grades`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -803,19 +871,25 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `disc_questions`
 --
 ALTER TABLE `disc_questions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `kpi_grades`
+--
+ALTER TABLE `kpi_grades`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `menus`
@@ -827,13 +901,13 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `pages`
@@ -845,7 +919,7 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `posts`
@@ -869,7 +943,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `translations`
 --
 ALTER TABLE `translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT for table `users`
