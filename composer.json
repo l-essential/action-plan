@@ -13,6 +13,7 @@
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
         "league/flysystem": "1.0.41",
+        "maika-kanaka/php-component-ui": "^0.2.2",
         "tcg/voyager": "v1.3.0"
     },
     "require-dev": {

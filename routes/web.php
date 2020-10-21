@@ -20,4 +20,11 @@ Route::get('/app/disc', 'Apps\DiscController@index');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+
+    Route::get('kpi/form-department', 'Admin\Kpi\FormDepartmentController@index');
+    Route::get('kpi/form-department/detail', 'Admin\Kpi\FormDepartmentController@detail');
+    Route::get('kpi/form-department/create', 'Admin\Kpi\FormDepartmentController@create');
+    Route::post('kpi/form-department/save', 'Admin\Kpi\FormDepartmentController@save');
+    Route::get('kpi/form-department/edit', 'Admin\Kpi\FormDepartmentController@edit');
+    Route::post('kpi/form-department/update', 'Admin\Kpi\FormDepartmentController@update');
 });

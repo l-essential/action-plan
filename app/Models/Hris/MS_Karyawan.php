@@ -15,4 +15,9 @@ class MS_Karyawan extends ModelInit
                     ->whereRaw('tglPengunduranDiri IS NULL');
     }
 
+    public function myData()
+    {
+        return $this->detail(['NIK' => \Auth::user()->nik]);
+    }
+
 }
