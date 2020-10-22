@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\Kpi\KpiFormDepartment;
-use App\Policies\KpiFormDepartmentPolicy;
+use App\Models\Kpi\KpiTrxDepartment;
+use App\Policies\KpiTrxDepartmentPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -16,7 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
-        KpiFormDepartment::class => KpiFormDepartmentPolicy::class,
+        KpiTrxDepartment::class => KpiTrxDepartmentPolicy::class,
     ];
 
     /**

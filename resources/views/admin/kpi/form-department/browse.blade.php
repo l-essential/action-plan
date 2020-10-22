@@ -1,5 +1,5 @@
 @php 
-    use App\Models\Kpi\KpiFormDepartment;
+    use App\Models\Kpi\KpiTrxDepartment;
     use App\Models\Hris\MS_Department;
 
     $objDepartment = new MS_Department();
@@ -15,7 +15,7 @@
             <i class=""></i> {{ trans('master.form') .' '. trans('master.kpi_departments') }}
         </h1>
 
-        @can('create', KpiFormDepartment::class)
+        @can('create', KpiTrxDepartment::class)
             <a href="{{ url('admin/kpi/form-department/create') }}" class="btn btn-success btn-add-new">
                 <i class="voyager-plus"></i> 
                 <span>
@@ -31,6 +31,7 @@
 @section('content')
     <div class="page-content browse container-fluid">
         @include('voyager::alerts')
+
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-bordered">

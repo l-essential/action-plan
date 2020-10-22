@@ -22,8 +22,17 @@ class FormDepartmentController extends Controller
         $data = [];
 
         $objTrx = new KpiTrxDepartment;
-        $data['form_kpi_departments'] = $objTrx->orderBy(\DB::raw("CONCAT(kpi_year_from, '-', kpi_month_from)"))
-                                            ->get();
+        $query = $objTrx->orderBy(\DB::raw("CONCAT(kpi_year_from, '-', kpi_month_from)"));
+
+        if( Auth::user()->cannot('browse_all', KpiTrxDepartment::class) )
+        {
+            $employee = new MS_Karyawan;
+            $employee = $employee->detail(['NIK' => Auth::user()->nik]);
+
+            $query->where('department_id', $employee->KodeSeksi);
+        }
+
+        $data['form_kpi_departments'] = $query->get();
 
         return view('admin/kpi/form-department.browse')->with($data);
     }

@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\User;
-use App\Models\Kpi\KpiFormDepartment;
+use App\Models\Kpi\KpiTrxDepartment;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class KpiFormDepartmentPolicy
+class KpiTrxDepartmentPolicy
 {
     use HandlesAuthorization;
 
