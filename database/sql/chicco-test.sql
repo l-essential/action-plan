@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 22, 2020 at 05:22 AM
+-- Generation Time: Oct 23, 2020 at 11:03 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.2.31
 
@@ -159,7 +159,23 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (94, 15, 'is_active', 'radio_btn', 'Aktif', 1, 1, 1, 1, 1, 1, '{\"default\":\"Y\",\"options\":{\"Y\":\"Iya\",\"N\":\"Engga\"}}', 6),
 (95, 15, 'created_by', 'text', 'Created By', 1, 0, 0, 0, 0, 0, '{}', 7),
 (96, 15, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 8),
-(97, 15, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 9);
+(97, 15, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 9),
+(98, 16, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(99, 16, 'division_id', 'division_field', 'Divisi', 0, 1, 1, 1, 1, 1, '{}', 2),
+(100, 16, 'department_id', 'department_field', 'Department', 0, 1, 1, 1, 1, 1, '{}', 3),
+(101, 16, 'section_id', 'section_field', 'Seksi', 0, 1, 1, 1, 1, 1, '{}', 4),
+(102, 16, 'level_id', 'level_field', 'Jabatan', 0, 1, 1, 1, 1, 1, '{}', 5),
+(103, 16, 'job_name', 'text', 'Nama Jobdesk', 1, 1, 1, 1, 1, 1, '{}', 6),
+(104, 16, 'kpi_weight', 'number', 'Bobot KPI %', 1, 1, 1, 1, 1, 1, '{\"min\":1,\"max\":100}', 7),
+(105, 16, 'kpi_notes_1', 'text', 'Keterangan Nilai 1', 0, 1, 1, 1, 1, 1, '{}', 8),
+(106, 16, 'kpi_notes_2', 'text', 'Keterangan Nilai 2', 0, 1, 1, 1, 1, 1, '{}', 9),
+(107, 16, 'kpi_notes_3', 'text', 'Keterangan Nilai 3', 0, 1, 1, 1, 1, 1, '{}', 10),
+(108, 16, 'kpi_notes_4', 'text', 'Keterangan Nilai 4', 0, 1, 1, 1, 1, 1, '{}', 11),
+(109, 16, 'kpi_notes_5', 'text', 'Keterangan Nilai 5', 0, 1, 1, 1, 1, 1, '{}', 12),
+(110, 16, 'description', 'text', 'Deskripsi', 0, 1, 1, 1, 1, 1, '{}', 13),
+(111, 16, 'is_active', 'text', 'Aktif', 1, 1, 1, 1, 1, 1, '{}', 14),
+(112, 16, 'created_at', 'timestamp', 'Dibuat tanggal', 0, 1, 1, 1, 0, 1, '{}', 15),
+(113, 16, 'updated_at', 'timestamp', 'Diperbarui tanggal', 0, 0, 0, 0, 0, 0, '{}', 16);
 
 -- --------------------------------------------------------
 
@@ -199,7 +215,8 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (8, 'disc_questions', 'disc-questions', 'DISC Question', 'DISC Questions', NULL, 'App\\Models\\Disc\\DiscQuestion', NULL, NULL, NULL, 1, 1, '{\"order_column\":\"question_order\",\"order_display_column\":\"question_1\",\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-10-13 02:01:29', '2020-10-18 20:24:49'),
 (10, 'kpi_grades', 'kpi-grades', 'Grade', 'Grades', NULL, 'App\\Models\\Kpi\\KpiGrade', NULL, NULL, NULL, 1, 1, '{\"order_column\":\"kpi_order\",\"order_display_column\":\"kpi_grade\",\"order_direction\":\"asc\",\"default_search_key\":\"kpi_grade\",\"scope\":null}', '2020-10-18 19:07:05', '2020-10-19 20:54:03'),
 (12, 'kpi_departments', 'kpi-departments', 'KPI Department', 'KPI Departments', NULL, 'App\\Models\\Kpi\\KpiDepartment', NULL, NULL, NULL, 1, 0, '{\"order_column\":\"kpi_order\",\"order_display_column\":\"kpi_name\",\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":\"currentUser\"}', '2020-10-18 21:42:37', '2020-10-21 07:49:52'),
-(15, 'kpi_percentase_levels', 'kpi-percentase-levels', 'Master Grade Level', 'Master Grade Level', NULL, 'App\\Models\\Kpi\\KpiPercentaseLevel', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-10-21 09:15:10', '2020-10-21 09:19:18');
+(15, 'kpi_percentase_levels', 'kpi-percentase-levels', 'Master Grade Level', 'Master Grade Level', NULL, 'App\\Models\\Kpi\\KpiPercentaseLevel', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-10-21 09:15:10', '2020-10-21 09:19:18'),
+(16, 'kpi_personal_jobdesks', 'kpi-personal-jobdesks', 'Master Jobdesk (Personal)', 'Master Jobdesks (Personal)', NULL, 'App\\Models\\Kpi\\KpiPersonalJobdesk', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-10-22 03:41:21', '2020-10-22 05:05:45');
 
 -- --------------------------------------------------------
 
@@ -268,7 +285,7 @@ INSERT INTO `kpi_departments` (`id`, `kpi_name`, `division_id`, `department_id`,
 (11, 'Melakukan dan melaporkan general cleaning setiap 1 minggu sekali sesuai dengan jadwal yang telah ditentukan		\n', NULL, '202', NULL, 15.00, 100.00, '', 'Y', NULL, '2020-10-21 09:47:40', '2020-10-21 09:47:40'),
 (12, 'Ketepatan waktu pengurusan perizinan umum		\n', NULL, '202', NULL, 10.00, 100.00, '', 'Y', NULL, '2020-10-21 09:47:52', '2020-10-21 09:47:52'),
 (13, 'Evaluasi status karyawan (perpanjangan kontrak & promosi) dilakukan 20 HK sebelum kontrak berakhir atau dari pengajuan promosi sampai dengan diajukan kepada persetujuan jabatan tertinggi		\n', NULL, '203', NULL, 20.00, 100.00, '', 'Y', NULL, '2020-10-21 09:49:18', '2020-10-21 09:49:18'),
-(14, 'Melakukan penilaian kompetensi karyawan 1 tahun sekali di bulan Desember		\n', NULL, '203', NULL, 20.00, 100.00, '1 tahun 1 kali', 'Y', NULL, '2020-10-21 09:49:41', '2020-10-21 09:49:41'),
+(14, 'Melakukan penilaian kompetensi karyawan 1 tahun sekali di bulan Desember		\n', NULL, '203', NULL, 20.00, 100.00, '1 tahun 1 kali', 'Y', NULL, '2020-10-21 09:49:00', '2020-10-23 03:11:16'),
 (15, 'Melakukan evaluasi kinerja karyawan 1 tahun 2 kali yaitu di bulan Juli & Desember		\n', NULL, '203', NULL, 20.00, 100.00, '1 tahun 2 kali', 'Y', NULL, '2020-10-21 09:49:59', '2020-10-21 09:49:59'),
 (16, 'Rekrutmen calon karyawan baru dapat dipenuhi semenjak permintaan disetujui sesuai dengan SK Direksi		\n', NULL, '203', NULL, 15.00, 100.00, 'Setiap Permintaan', 'Y', NULL, '2020-10-21 09:50:35', '2020-10-21 09:50:35'),
 (17, 'Pemutakhiran data base karyawan setiap bulan		\n', NULL, '203', NULL, 15.00, 100.00, '', 'Y', NULL, '2020-10-21 09:50:47', '2020-10-21 09:50:47'),
@@ -401,6 +418,38 @@ INSERT INTO `kpi_percentase_levels` (`id`, `level_id`, `quantitative_value`, `qu
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kpi_personal_jobdesks`
+--
+
+CREATE TABLE `kpi_personal_jobdesks` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `division_id` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `department_id` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `section_id` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `level_id` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `job_name` varchar(220) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `kpi_weight` int(11) NOT NULL,
+  `kpi_notes_1` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `kpi_notes_2` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `kpi_notes_3` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `kpi_notes_4` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `kpi_notes_5` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_active` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Y',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `kpi_personal_jobdesks`
+--
+
+INSERT INTO `kpi_personal_jobdesks` (`id`, `division_id`, `department_id`, `section_id`, `level_id`, `job_name`, `kpi_weight`, `kpi_notes_1`, `kpi_notes_2`, `kpi_notes_3`, `kpi_notes_4`, `kpi_notes_5`, `description`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, '30', '303', 'PRG', NULL, 'Develop Baru & Pengembangan Aplikasi', 20, 'Melewati tenggat waktu >= 1 bulan', 'Melewati tenggat waktu >= 2 minggu', 'Melewati tenggat waktu >= 1 minggu', 'Tidak lewat dari tenggat waktu tetapi terdapat bugs / misconcept di module yang sudah di sepakati di tahap observasi', 'Tidak lewat dari tenggat waktu & tidak ada bugs / misconcept pada module yang sudah di rancang bersama saat tahap observasi', '', 'Y', '2020-10-22 05:03:26', '2020-10-22 05:03:26');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `kpi_trx_departments`
 --
 
@@ -426,8 +475,11 @@ CREATE TABLE `kpi_trx_departments` (
 --
 
 INSERT INTO `kpi_trx_departments` (`id`, `division_id`, `department_id`, `section_id`, `kpi_year_from`, `kpi_month_from`, `kpi_year_until`, `kpi_month_until`, `kpi_status`, `description`, `is_active`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, NULL, '303', NULL, 2020, 6, 2020, 12, 'Draft', NULL, 'Y', 2, '2020-10-22 01:11:38', '2020-10-22 01:26:20'),
-(2, NULL, '302', NULL, 2020, 6, 2020, 12, 'Draft', NULL, 'Y', 5, '2020-10-22 02:52:05', '2020-10-22 02:54:55');
+(1, NULL, '303', NULL, 2020, 6, 2020, 10, 'Draft', NULL, 'Y', 2, '2020-10-22 01:11:38', '2020-10-23 06:41:41'),
+(2, NULL, '302', NULL, 2020, 6, 2020, 12, 'Draft', NULL, 'Y', 5, '2020-10-22 02:52:05', '2020-10-22 02:54:55'),
+(3, NULL, '203', NULL, 2020, 1, 2020, 11, 'Draft', NULL, 'Y', 7, '2020-10-23 03:12:33', NULL),
+(4, NULL, '203', NULL, 2020, 6, 2020, 11, 'Draft', NULL, 'Y', 7, '2020-10-23 03:22:06', NULL),
+(5, NULL, '303', NULL, 2020, 1, 2020, 12, 'Canceled', NULL, 'Y', 1, '2020-10-23 06:47:26', '2020-10-23 07:22:38');
 
 -- --------------------------------------------------------
 
@@ -452,41 +504,31 @@ CREATE TABLE `kpi_trx_department_details` (
 --
 
 INSERT INTO `kpi_trx_department_details` (`id`, `id_detail`, `kpi_department_id`, `kpi_year`, `kpi_month`, `kpi_value`, `description`, `approve_at`, `approve_by`) VALUES
-(1, 1, 1, 2020, 6, '4', NULL, NULL, NULL),
-(1, 2, 1, 2020, 7, NULL, NULL, NULL, NULL),
-(1, 3, 1, 2020, 8, NULL, NULL, NULL, NULL),
-(1, 4, 1, 2020, 9, NULL, NULL, NULL, NULL),
-(1, 5, 1, 2020, 10, NULL, NULL, NULL, NULL),
-(1, 6, 1, 2020, 11, NULL, NULL, NULL, NULL),
-(1, 7, 1, 2020, 12, NULL, NULL, NULL, NULL),
-(1, 8, 3, 2020, 6, '4', NULL, NULL, NULL),
-(1, 9, 3, 2020, 7, NULL, NULL, NULL, NULL),
-(1, 10, 3, 2020, 8, NULL, NULL, NULL, NULL),
-(1, 11, 3, 2020, 9, NULL, NULL, NULL, NULL),
-(1, 12, 3, 2020, 10, NULL, NULL, NULL, NULL),
-(1, 13, 3, 2020, 11, NULL, NULL, NULL, NULL),
-(1, 14, 3, 2020, 12, NULL, NULL, NULL, NULL),
-(1, 15, 4, 2020, 6, '4', NULL, NULL, NULL),
-(1, 16, 4, 2020, 7, NULL, NULL, NULL, NULL),
-(1, 17, 4, 2020, 8, NULL, NULL, NULL, NULL),
-(1, 18, 4, 2020, 9, NULL, NULL, NULL, NULL),
-(1, 19, 4, 2020, 10, NULL, NULL, NULL, NULL),
-(1, 20, 4, 2020, 11, NULL, NULL, NULL, NULL),
-(1, 21, 4, 2020, 12, NULL, NULL, NULL, NULL),
-(1, 22, 5, 2020, 6, '4', NULL, NULL, NULL),
-(1, 23, 5, 2020, 7, NULL, NULL, NULL, NULL),
-(1, 24, 5, 2020, 8, NULL, NULL, NULL, NULL),
-(1, 25, 5, 2020, 9, NULL, NULL, NULL, NULL),
-(1, 26, 5, 2020, 10, NULL, NULL, NULL, NULL),
-(1, 27, 5, 2020, 11, NULL, NULL, NULL, NULL),
-(1, 28, 5, 2020, 12, NULL, NULL, NULL, NULL),
-(1, 29, 6, 2020, 6, '5', NULL, NULL, NULL),
-(1, 30, 6, 2020, 7, NULL, NULL, NULL, NULL),
-(1, 31, 6, 2020, 8, NULL, NULL, NULL, NULL),
-(1, 32, 6, 2020, 9, NULL, NULL, NULL, NULL),
-(1, 33, 6, 2020, 10, NULL, NULL, NULL, NULL),
-(1, 34, 6, 2020, 11, NULL, NULL, NULL, NULL),
-(1, 35, 6, 2020, 12, NULL, NULL, NULL, NULL),
+(1, 1, 1, 2020, 6, '3', NULL, NULL, NULL),
+(1, 2, 1, 2020, 7, '4', NULL, NULL, NULL),
+(1, 3, 1, 2020, 8, '3', NULL, NULL, NULL),
+(1, 4, 1, 2020, 9, '3', NULL, NULL, NULL),
+(1, 5, 1, 2020, 10, 'skip', NULL, NULL, NULL),
+(1, 6, 3, 2020, 6, '4', NULL, NULL, NULL),
+(1, 7, 3, 2020, 7, '3', NULL, NULL, NULL),
+(1, 8, 3, 2020, 8, '3', NULL, NULL, NULL),
+(1, 9, 3, 2020, 9, '3', NULL, NULL, NULL),
+(1, 10, 3, 2020, 10, 'skip', NULL, NULL, NULL),
+(1, 11, 4, 2020, 6, '3', NULL, NULL, NULL),
+(1, 12, 4, 2020, 7, '4', NULL, NULL, NULL),
+(1, 13, 4, 2020, 8, '3', NULL, NULL, NULL),
+(1, 14, 4, 2020, 9, '3', NULL, NULL, NULL),
+(1, 15, 4, 2020, 10, 'skip', NULL, NULL, NULL),
+(1, 16, 5, 2020, 6, '4', NULL, NULL, NULL),
+(1, 17, 5, 2020, 7, '4', NULL, NULL, NULL),
+(1, 18, 5, 2020, 8, '4', NULL, NULL, NULL),
+(1, 19, 5, 2020, 9, '5', NULL, NULL, NULL),
+(1, 20, 5, 2020, 10, 'skip', NULL, NULL, NULL),
+(1, 21, 6, 2020, 6, '5', NULL, NULL, NULL),
+(1, 22, 6, 2020, 7, '5', NULL, NULL, NULL),
+(1, 23, 6, 2020, 8, '5', NULL, NULL, NULL),
+(1, 24, 6, 2020, 9, '5', NULL, NULL, NULL),
+(1, 25, 6, 2020, 10, 'skip', NULL, NULL, NULL),
 (2, 1, 19, 2020, 6, '4', NULL, NULL, NULL),
 (2, 2, 19, 2020, 7, '4', NULL, NULL, NULL),
 (2, 3, 19, 2020, 8, '4', NULL, NULL, NULL),
@@ -514,7 +556,67 @@ INSERT INTO `kpi_trx_department_details` (`id`, `id_detail`, `kpi_department_id`
 (2, 25, 22, 2020, 9, '5', NULL, NULL, NULL),
 (2, 26, 22, 2020, 10, NULL, NULL, NULL, NULL),
 (2, 27, 22, 2020, 11, NULL, NULL, NULL, NULL),
-(2, 28, 22, 2020, 12, NULL, NULL, NULL, NULL);
+(2, 28, 22, 2020, 12, NULL, NULL, NULL, NULL),
+(5, 1, 1, 2020, 1, 'skip', NULL, NULL, NULL),
+(5, 2, 1, 2020, 2, 'skip', NULL, NULL, NULL),
+(5, 3, 1, 2020, 3, '5', NULL, NULL, NULL),
+(5, 4, 1, 2020, 4, 'skip', NULL, NULL, NULL),
+(5, 5, 1, 2020, 5, 'skip', NULL, NULL, NULL),
+(5, 6, 1, 2020, 6, '5', NULL, NULL, NULL),
+(5, 7, 1, 2020, 7, 'skip', NULL, NULL, NULL),
+(5, 8, 1, 2020, 8, 'skip', NULL, NULL, NULL),
+(5, 9, 1, 2020, 9, '5', NULL, NULL, NULL),
+(5, 10, 1, 2020, 10, 'skip', NULL, NULL, NULL),
+(5, 11, 1, 2020, 11, 'skip', NULL, NULL, NULL),
+(5, 12, 1, 2020, 12, '5', NULL, NULL, NULL),
+(5, 13, 3, 2020, 1, 'skip', NULL, NULL, NULL),
+(5, 14, 3, 2020, 2, 'skip', NULL, NULL, NULL),
+(5, 15, 3, 2020, 3, 'skip', NULL, NULL, NULL),
+(5, 16, 3, 2020, 4, 'skip', NULL, NULL, NULL),
+(5, 17, 3, 2020, 5, 'skip', NULL, NULL, NULL),
+(5, 18, 3, 2020, 6, 'skip', NULL, NULL, NULL),
+(5, 19, 3, 2020, 7, 'skip', NULL, NULL, NULL),
+(5, 20, 3, 2020, 8, 'skip', NULL, NULL, NULL),
+(5, 21, 3, 2020, 9, 'skip', NULL, NULL, NULL),
+(5, 22, 3, 2020, 10, 'skip', NULL, NULL, NULL),
+(5, 23, 3, 2020, 11, 'skip', NULL, NULL, NULL),
+(5, 24, 3, 2020, 12, 'skip', NULL, NULL, NULL),
+(5, 25, 4, 2020, 1, 'skip', NULL, NULL, NULL),
+(5, 26, 4, 2020, 2, 'skip', NULL, NULL, NULL),
+(5, 27, 4, 2020, 3, 'skip', NULL, NULL, NULL),
+(5, 28, 4, 2020, 4, 'skip', NULL, NULL, NULL),
+(5, 29, 4, 2020, 5, 'skip', NULL, NULL, NULL),
+(5, 30, 4, 2020, 6, 'skip', NULL, NULL, NULL),
+(5, 31, 4, 2020, 7, 'skip', NULL, NULL, NULL),
+(5, 32, 4, 2020, 8, 'skip', NULL, NULL, NULL),
+(5, 33, 4, 2020, 9, 'skip', NULL, NULL, NULL),
+(5, 34, 4, 2020, 10, 'skip', NULL, NULL, NULL),
+(5, 35, 4, 2020, 11, 'skip', NULL, NULL, NULL),
+(5, 36, 4, 2020, 12, 'skip', NULL, NULL, NULL),
+(5, 37, 5, 2020, 1, 'skip', NULL, NULL, NULL),
+(5, 38, 5, 2020, 2, 'skip', NULL, NULL, NULL),
+(5, 39, 5, 2020, 3, 'skip', NULL, NULL, NULL),
+(5, 40, 5, 2020, 4, 'skip', NULL, NULL, NULL),
+(5, 41, 5, 2020, 5, 'skip', NULL, NULL, NULL),
+(5, 42, 5, 2020, 6, 'skip', NULL, NULL, NULL),
+(5, 43, 5, 2020, 7, 'skip', NULL, NULL, NULL),
+(5, 44, 5, 2020, 8, 'skip', NULL, NULL, NULL),
+(5, 45, 5, 2020, 9, 'skip', NULL, NULL, NULL),
+(5, 46, 5, 2020, 10, 'skip', NULL, NULL, NULL),
+(5, 47, 5, 2020, 11, 'skip', NULL, NULL, NULL),
+(5, 48, 5, 2020, 12, 'skip', NULL, NULL, NULL),
+(5, 49, 6, 2020, 1, 'skip', NULL, NULL, NULL),
+(5, 50, 6, 2020, 2, 'skip', NULL, NULL, NULL),
+(5, 51, 6, 2020, 3, 'skip', NULL, NULL, NULL),
+(5, 52, 6, 2020, 4, 'skip', NULL, NULL, NULL),
+(5, 53, 6, 2020, 5, 'skip', NULL, NULL, NULL),
+(5, 54, 6, 2020, 6, 'skip', NULL, NULL, NULL),
+(5, 55, 6, 2020, 7, 'skip', NULL, NULL, NULL),
+(5, 56, 6, 2020, 8, 'skip', NULL, NULL, NULL),
+(5, 57, 6, 2020, 9, 'skip', NULL, NULL, NULL),
+(5, 58, 6, 2020, 10, 'skip', NULL, NULL, NULL),
+(5, 59, 6, 2020, 11, 'skip', NULL, NULL, NULL),
+(5, 60, 6, 2020, 12, 'skip', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -579,9 +681,10 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class
 (17, 1, 'D.I.S.C', '', '_self', 'voyager-file-code', '#000000', NULL, 3, '2020-10-13 02:03:11', '2020-10-18 19:11:08', NULL, ''),
 (18, 1, 'Master Grades', '', '_self', NULL, '#000000', 19, 1, '2020-10-18 19:07:05', '2020-10-18 19:13:22', 'voyager.kpi-grades.index', 'null'),
 (19, 1, 'KPI', '', '_self', 'voyager-trophy', '#000000', NULL, 2, '2020-10-18 19:08:39', '2020-10-18 19:10:23', NULL, ''),
-(22, 1, 'Form KPI Departemen', 'admin/kpi/form-department', '_self', NULL, '#000000', 19, 4, '2020-10-19 02:07:36', '2020-10-21 09:11:29', NULL, ''),
+(22, 1, 'Form KPI Departemen', 'admin/kpi/form-department', '_self', NULL, '#000000', 19, 5, '2020-10-19 02:07:36', '2020-10-22 04:30:36', NULL, ''),
 (24, 1, 'Master Grade Level', '', '_self', NULL, NULL, 19, 2, '2020-10-21 09:15:10', '2020-10-21 09:18:36', 'voyager.kpi-percentase-levels.index', NULL),
-(25, 1, 'Master KPI Departemen', 'admin/kpi-departments', '_self', NULL, '#000000', 19, 3, '2020-10-21 09:18:29', '2020-10-21 09:18:36', NULL, '');
+(25, 1, 'Master KPI Departemen', 'admin/kpi-departments', '_self', NULL, '#000000', 19, 3, '2020-10-21 09:18:29', '2020-10-21 09:18:36', NULL, ''),
+(26, 1, 'Master Jobdesks (Personal)', '', '_self', NULL, NULL, 19, 4, '2020-10-22 03:41:22', '2020-10-22 04:30:36', 'voyager.kpi-personal-jobdesks.index', NULL);
 
 -- --------------------------------------------------------
 
@@ -633,7 +736,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (34, '2020_10_19_042807_kpi_department', 6),
 (35, '2020_10_19_082610_kpi_trx_department', 7),
 (36, '2020_10_19_090132_kpi_trx_department_detail', 8),
-(39, '2020_10_21_153159_kpi_percentase_level', 9);
+(39, '2020_10_21_153159_kpi_percentase_level', 9),
+(40, '2020_10_22_091229_kpi_personal_jobdesk', 10);
 
 -- --------------------------------------------------------
 
@@ -744,14 +848,19 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (55, 'add_kpi_departments', 'kpi_departments', '2020-10-18 21:42:37', '2020-10-18 21:42:37'),
 (56, 'delete_kpi_departments', 'kpi_departments', '2020-10-18 21:42:37', '2020-10-18 21:42:37'),
 (57, 'browse_all_kpi_departments', 'kpi_departments', '2020-10-19 06:48:04', '2020-10-19 06:48:11'),
-(58, 'browse', 'kpi_trx_departments', '2020-10-19 09:32:22', '2020-10-19 09:32:22'),
-(59, 'browse_all', 'kpi_trx_departments', '2020-10-19 09:32:22', '2020-10-19 09:32:22'),
+(58, 'browse_kpi_trx_departments', 'kpi_trx_departments', '2020-10-19 09:32:22', '2020-10-19 09:32:22'),
+(59, 'browse_all_kpi_trx_departments', 'kpi_trx_departments', '2020-10-19 09:32:22', '2020-10-19 09:32:22'),
 (60, 'create_kpi_trx_departments', 'kpi_trx_departments', '2020-10-19 09:43:26', '2020-10-19 09:43:26'),
 (66, 'browse_kpi_percentase_levels', 'kpi_percentase_levels', '2020-10-21 09:15:10', '2020-10-21 09:15:10'),
 (67, 'read_kpi_percentase_levels', 'kpi_percentase_levels', '2020-10-21 09:15:10', '2020-10-21 09:15:10'),
 (68, 'edit_kpi_percentase_levels', 'kpi_percentase_levels', '2020-10-21 09:15:10', '2020-10-21 09:15:10'),
 (69, 'add_kpi_percentase_levels', 'kpi_percentase_levels', '2020-10-21 09:15:10', '2020-10-21 09:15:10'),
-(70, 'delete_kpi_percentase_levels', 'kpi_percentase_levels', '2020-10-21 09:15:10', '2020-10-21 09:15:10');
+(70, 'delete_kpi_percentase_levels', 'kpi_percentase_levels', '2020-10-21 09:15:10', '2020-10-21 09:15:10'),
+(71, 'browse_kpi_personal_jobdesks', 'kpi_personal_jobdesks', '2020-10-22 03:41:22', '2020-10-22 03:41:22'),
+(72, 'read_kpi_personal_jobdesks', 'kpi_personal_jobdesks', '2020-10-22 03:41:22', '2020-10-22 03:41:22'),
+(73, 'edit_kpi_personal_jobdesks', 'kpi_personal_jobdesks', '2020-10-22 03:41:22', '2020-10-22 03:41:22'),
+(74, 'add_kpi_personal_jobdesks', 'kpi_personal_jobdesks', '2020-10-22 03:41:22', '2020-10-22 03:41:22'),
+(75, 'delete_kpi_personal_jobdesks', 'kpi_personal_jobdesks', '2020-10-22 03:41:22', '2020-10-22 03:41:22');
 
 -- --------------------------------------------------------
 
@@ -844,16 +953,28 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (57, 1),
 (57, 2),
 (58, 1),
+(58, 2),
 (58, 3),
 (59, 1),
-(59, 3),
+(59, 2),
 (60, 1),
+(60, 2),
 (60, 3),
 (66, 1),
+(66, 2),
 (67, 1),
+(67, 2),
 (68, 1),
+(68, 2),
 (69, 1),
-(70, 1);
+(69, 2),
+(70, 1),
+(70, 2),
+(71, 1),
+(72, 1),
+(73, 1),
+(74, 1),
+(75, 1);
 
 -- --------------------------------------------------------
 
@@ -1073,7 +1194,27 @@ INSERT INTO `translations` (`id`, `table_name`, `column_name`, `foreign_key`, `l
 (134, 'data_rows', 'display_name', 97, 'en', 'Updated At', '2020-10-21 09:16:16', '2020-10-21 09:16:16'),
 (135, 'data_types', 'display_name_singular', 15, 'en', 'Master Grade Level', '2020-10-21 09:16:16', '2020-10-21 09:16:16'),
 (136, 'data_types', 'display_name_plural', 15, 'en', 'Master Grade Level', '2020-10-21 09:16:16', '2020-10-21 09:16:16'),
-(137, 'kpi_departments', 'kpi_name', 21, 'en', 'Tepat dalam perhitungan, pembayaran dan pelaporan pajak sesuai dengan jadwal yang telah ditentukan		\n', '2020-10-21 09:52:15', '2020-10-21 09:52:15');
+(137, 'kpi_departments', 'kpi_name', 21, 'en', 'Tepat dalam perhitungan, pembayaran dan pelaporan pajak sesuai dengan jadwal yang telah ditentukan		\n', '2020-10-21 09:52:15', '2020-10-21 09:52:15'),
+(138, 'data_rows', 'display_name', 98, 'en', 'Id', '2020-10-22 04:26:04', '2020-10-22 04:26:04'),
+(139, 'data_rows', 'display_name', 99, 'en', 'Divisi', '2020-10-22 04:26:04', '2020-10-22 04:26:04'),
+(140, 'data_rows', 'display_name', 100, 'en', 'Department', '2020-10-22 04:26:04', '2020-10-22 04:26:04'),
+(141, 'data_rows', 'display_name', 101, 'en', 'Seksi', '2020-10-22 04:26:04', '2020-10-22 04:26:04'),
+(142, 'data_rows', 'display_name', 102, 'en', 'Jabatan', '2020-10-22 04:26:04', '2020-10-22 04:26:04'),
+(143, 'data_rows', 'display_name', 103, 'en', 'Nama Jobdesk', '2020-10-22 04:26:04', '2020-10-22 04:26:04'),
+(144, 'data_rows', 'display_name', 104, 'en', 'Bobot KPI', '2020-10-22 04:26:04', '2020-10-22 04:26:04'),
+(145, 'data_rows', 'display_name', 105, 'en', 'Keterangan Nilai 1', '2020-10-22 04:26:04', '2020-10-22 04:26:04'),
+(146, 'data_rows', 'display_name', 106, 'en', 'Keterangan Nilai 2', '2020-10-22 04:26:04', '2020-10-22 04:26:04'),
+(147, 'data_rows', 'display_name', 107, 'en', 'Keterangan Nilai 3', '2020-10-22 04:26:04', '2020-10-22 04:26:04'),
+(148, 'data_rows', 'display_name', 108, 'en', 'Keterangan Nilai 4', '2020-10-22 04:26:04', '2020-10-22 04:26:04'),
+(149, 'data_rows', 'display_name', 109, 'en', 'Keterangan Nilai 5', '2020-10-22 04:26:04', '2020-10-22 04:26:04'),
+(150, 'data_rows', 'display_name', 110, 'en', 'Deskripsi', '2020-10-22 04:26:04', '2020-10-22 04:26:04'),
+(151, 'data_rows', 'display_name', 111, 'en', 'Aktif', '2020-10-22 04:26:04', '2020-10-22 04:26:04'),
+(152, 'data_rows', 'display_name', 112, 'en', 'Dibuat tanggal', '2020-10-22 04:26:04', '2020-10-22 04:26:04'),
+(153, 'data_rows', 'display_name', 113, 'en', 'Diperbarui tanggal', '2020-10-22 04:26:04', '2020-10-22 04:26:04'),
+(154, 'data_types', 'display_name_singular', 16, 'en', 'Master Jobdesk (Personal)', '2020-10-22 04:26:04', '2020-10-22 04:26:04'),
+(155, 'data_types', 'display_name_plural', 16, 'en', 'Master Jobdesks (Personal)', '2020-10-22 04:26:04', '2020-10-22 04:26:04'),
+(156, 'kpi_departments', 'kpi_name', 14, 'en', 'Melakukan penilaian kompetensi karyawan 1 tahun sekali di bulan Desember		\n', '2020-10-23 03:11:16', '2020-10-23 03:11:16'),
+(157, 'kpi_departments', 'description', 14, 'en', '1 tahun 1 kali', '2020-10-23 03:11:16', '2020-10-23 03:11:16');
 
 -- --------------------------------------------------------
 
@@ -1100,13 +1241,14 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`, `nik`) VALUES
-(1, 1, 'Budi Irwan Firmansyah', 'budi@l-essential.com', 'users/default.png', '$2y$10$K0VT56jyjwe/h.jr1m5tzuEJjXeg.xoLucUYwvkNoA9Q2K4NcW6me', 'Zrzhxx5SeMei7KZrmOneV4pxSaHwH7t7ZKS6wAiULlIwfszioOeIC7Lf7kIK', '{\"locale\":\"id\"}', '2020-10-13 00:47:13', '2020-10-19 00:00:33', '2019072843'),
-(2, 1, 'Joko Yuana', 'joko@l-essential.com', 'users/default.png', '$2y$10$qRTjsDscWYt28mk9iAlAgea4jT5bX72pZt3Tn49z3fquCDFmegvV2', 'NTRL82doJNWuUgAETjU9xHaCfHlBZiGkwfXTnn8D82f6ssUT4jsfzh9bV8mB', '{\"locale\":\"id\"}', '2020-10-18 20:47:25', '2020-10-18 23:12:02', '2011010489'),
+(1, 1, 'Budi Irwan Firmansyah', 'budi@l-essential.com', 'users/default.png', '$2y$10$K0VT56jyjwe/h.jr1m5tzuEJjXeg.xoLucUYwvkNoA9Q2K4NcW6me', 'KnRF52jmPCzuJ4cJ8dP1HVsNhHdJxaNA1eM3wgDPLVOoumlIl4Y47DI62nmE', '{\"locale\":\"id\"}', '2020-10-13 00:47:13', '2020-10-19 00:00:33', '2019072843'),
+(2, 1, 'Joko Yuana', 'joko@l-essential.com', 'users/default.png', '$2y$10$qRTjsDscWYt28mk9iAlAgea4jT5bX72pZt3Tn49z3fquCDFmegvV2', 'zevq2nTcRHeNyyum7VafV7uACMtdchLuE62GTYVZWgCRJzFt9V594iJoo0xa', '{\"locale\":\"id\"}', '2020-10-18 20:47:25', '2020-10-18 23:12:02', '2011010489'),
 (3, 3, 'Denny Rachmadi', 'denny@l-essential.com', 'users/default.png', '$2y$10$Immf7OQpXuYvyOEA4KrQAOystKqrlrtLr5Je6qqB7XvQNLIndv53q', NULL, '{\"locale\":\"id\"}', '2020-10-19 00:20:52', '2020-10-19 00:22:45', '2019062814'),
 (4, 2, 'Chicco Aridondo Azis', 'chicco@l-essential.com', 'users/default.png', '$2y$10$o2mSwtDshNNt4WxDz8tTCez8aQh6sC63C7pFW0qSaWNr0.Snmb/fW', '7qhAJdprT0Dv5T81Nemp534htzf1KZ8hUDDoNmMNpgxhtyWpgpC8T4FSVbrA', '{\"locale\":\"id\"}', '2020-10-19 00:27:37', '2020-10-19 00:27:37', '2020010018'),
-(5, 3, 'Purna Rady', 'purna@l-essential.com', 'users/default.png', '$2y$10$q0j61kzVXpbkgjH4aEoyVeYjslMPPKL6vKmBgZa4ESKRodmQxL2pa', 'D4oeaYCy1Bcc2ljGGTo9oSFR2Ov9gernwCIQwiNPZ1iUNUpBBhqDLHwRc16C', '{\"locale\":\"id\"}', '2020-10-21 07:46:03', '2020-10-22 01:37:59', '2018122303'),
+(5, 3, 'Purna Rady', 'purna@l-essential.com', 'users/default.png', '$2y$10$7eEvcWprPntSyDO.feKfv.PQ.raaaZJFbq7FTBWm6CCBg7nh7JQju', 'oDvLKN8Ape6cv5pHTpZNoEFtJ85CocOdQ8BHXwbo0IVA54zI8kLkzylSc5Da', '{\"locale\":\"id\"}', '2020-10-21 07:46:03', '2020-10-22 03:43:55', '2018122303'),
 (6, 2, 'Triadi', 'triadi@l-essential.com', 'users/default.png', '$2y$10$YsACiXihkRyc3d7t5t1SQ.LKKZ/tfXI6ykLO3PSUtjQpUO.3Vvr9a', NULL, '{\"locale\":\"id\"}', '2020-10-22 01:40:00', '2020-10-22 01:40:00', '2020010067'),
-(7, 2, 'Daniel Arisonta Azis', 'daniel@l-essential.com', 'users/default.png', '$2y$10$h9MktG28Ej8MTWTSuEu6.evrzxEvv98lKo2eCN/4fwWTY8C1pD.US', NULL, '{\"locale\":\"id\"}', '2020-10-22 01:40:31', '2020-10-22 01:40:31', '2020090321');
+(7, 2, 'Daniel Arisonta Azis', 'daniel@l-essential.com', 'users/default.png', '$2y$10$h9MktG28Ej8MTWTSuEu6.evrzxEvv98lKo2eCN/4fwWTY8C1pD.US', NULL, '{\"locale\":\"id\"}', '2020-10-22 01:40:31', '2020-10-22 01:40:31', '2020090321'),
+(8, 1, 'YUNIARTO', 'yuniarto@l-essential.com', 'users/default.png', '$2y$10$LJojw8JFNMON/HDxQmdb/erkr8LWYgNB0eE8IwPr3NyT2LtjLDzZ2', NULL, '{\"locale\":\"id\"}', '2020-10-23 08:58:02', '2020-10-23 08:58:02', '2010030410');
 
 -- --------------------------------------------------------
 
@@ -1174,6 +1316,12 @@ ALTER TABLE `kpi_grade_levels`
 -- Indexes for table `kpi_percentase_levels`
 --
 ALTER TABLE `kpi_percentase_levels`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kpi_personal_jobdesks`
+--
+ALTER TABLE `kpi_personal_jobdesks`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1294,13 +1442,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 
 --
 -- AUTO_INCREMENT for table `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `disc_questions`
@@ -1333,6 +1481,12 @@ ALTER TABLE `kpi_percentase_levels`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `kpi_personal_jobdesks`
+--
+ALTER TABLE `kpi_personal_jobdesks`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `kpi_trx_departments`
 --
 ALTER TABLE `kpi_trx_departments`
@@ -1348,13 +1502,13 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `pages`
@@ -1366,7 +1520,7 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT for table `posts`
@@ -1390,13 +1544,13 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `translations`
 --
 ALTER TABLE `translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

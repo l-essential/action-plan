@@ -297,21 +297,5 @@
                 ]
             });
         });
-
-        var deleteFormAction;
-        $('td').on('click', '.delete', function (e) {
-            $('#delete_form')[0].action = 'form-department/cancel'.replace('__id', $(this).data('id'));
-            $('#delete_modal').modal('show');
-        });
-
-        $('input[name="row_id"]').on('change', function () {
-            var ids = [];
-            $('input[name="row_id"]').each(function() {
-                if ($(this).is(':checked')) {
-                    ids.push($(this).val());
-                }
-            });
-            $('.selected_ids').val(ids);
-        });
     </script>
 @stop
