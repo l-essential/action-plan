@@ -24,12 +24,37 @@ class FormDepartmentController extends Controller
         $objTrx = new KpiTrxDepartment;
         $query = $objTrx->orderBy(\DB::raw("CONCAT(kpi_year_from, '-', kpi_month_from)"));
 
-        if( Auth::user()->cannot('browse_all', KpiTrxDepartment::class) )
+        # hak akses
+        if( Auth::user()->can('browse_all', KpiTrxDepartment::class) !== true )
         {
             $employee = new MS_Karyawan;
             $employee = $employee->detail(['NIK' => Auth::user()->nik]);
 
             $query->where('department_id', $employee->KodeSeksi);
+        }
+        else 
+        {
+            # filter data 
+            if( !empty(app('request')->input('department_id')) )
+            {
+                $query->where('department_id', app('request')->input('department_id'));
+            }
+        }
+
+        # filter data 
+        if( !empty(app('request')->input('periode')) )
+        {
+            $periode = app('request')->input('periode');
+            $periode = explode("_", $periode);
+            $period_year_from = explode("-", $periode[0])[0];
+            $period_month_from = explode("-", $periode[0])[1];
+            $period_year_until = explode("-", $periode[1])[0];
+            $period_month_until = explode("-", $periode[1])[1];
+
+            $query->where('kpi_year_from', $period_year_from);
+            $query->where('kpi_month_from', $period_month_from);
+            $query->where('kpi_year_until', $period_year_until);
+            $query->where('kpi_month_until', $period_month_until);
         }
 
         $data['form_kpi_departments'] = $query->get();

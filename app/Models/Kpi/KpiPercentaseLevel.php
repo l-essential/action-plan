@@ -15,7 +15,7 @@ class KpiPercentaseLevel extends Model
         $level = new Tbl_Level;
         $level = $level->detail(['kode_level' => $this->level_id]);
 
-        return $level->nama_level;
+        return $level->nama_level ?? '';
     }
 
     public function getLevelIdReadAttribute()
@@ -23,7 +23,7 @@ class KpiPercentaseLevel extends Model
         $level = new Tbl_Level;
         $level = $level->detail(['kode_level' => $this->level_id]);
 
-        return $level->nama_level;
+        return $level->nama_level ?? '';
     }
 
 }

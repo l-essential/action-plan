@@ -12,6 +12,7 @@
 @endphp
 
 <select data-live-search="true" class="form-control selectpicker" name="{{ $row->field }}" data-name="{{ $row->display_name }}" @if($row->required == 1) required @endif>
+    <option value=""> -- Pilih -- </option>
     @foreach( $divisions as $dep )
     <option value="{{ $dep->kodeDepartment }}" {{ $division_selected == $dep->kodeDepartment ? 'selected' : '' }}> 
         {{ $dep->namaDepartment }} 

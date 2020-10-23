@@ -12,6 +12,11 @@ class KpiTrxDepartmentPolicy
 
     public $table_name = 'kpi_trx_departments';
 
+    public function browse_all(User $user)
+    {
+        return \ModelInit::canIAccess('browse_all_' . $this->table_name);
+    }
+
     /**
      * Determine whether the user can view the kpi form department.
      *
@@ -19,9 +24,9 @@ class KpiTrxDepartmentPolicy
      * @param  \App\KpiFormDepartment  $kpiFormDepartment
      * @return mixed
      */
-    public function view(User $user, KpiFormDepartment $kpiFormDepartment)
+    public function view(User $user)
     {
-        //
+        
     }
 
     /**

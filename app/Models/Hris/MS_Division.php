@@ -5,7 +5,7 @@ use App\Models\ModelInit;
 class MS_Division extends ModelInit
 {
 
-    public $table = 'MS_Divisi';
+    public $table = 'MS_Department';
     public $conn = 'hris';
 
     public function getDivisiNameByNik($nik)

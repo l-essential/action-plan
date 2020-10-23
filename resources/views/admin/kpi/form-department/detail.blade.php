@@ -98,7 +98,7 @@
                                         <th rowspan="3">Sasaran mutu / KPI</th>
                                         <th rowspan="3">Bobot</th>
                                         <th rowspan="3">Target</th>
-                                        <th class="text-center blue-blue-sky" colspan="{{ $diff_month }}">
+                                        <th class="text-center blue-blue-sky" colspan="{{ $diff_month * 2 }}">
                                             Periode
                                             ( 
                                                 {{ $header->kpi_year_from }}-{{ $header->kpi_month_from }} 
@@ -106,7 +106,8 @@
                                                 {{ $header->kpi_year_until }}-{{ $header->kpi_month_until }} 
                                             )
                                         </th>
-                                    </tr>
+                                        <th style="vertical-align: middle" rowspan="3">Hasil Akhir</th>
+                                    </tr> 
 
                                     <tr>
                                         @php 
@@ -177,6 +178,7 @@
                                                 $month_first->modify("+1 Month");
                                                 endfor;
                                             @endphp
+                                            <td colspan="2"></td>
                                         </tr>
                                     @endforeach
 
@@ -191,21 +193,31 @@
                                         @endphp
                                         <th class="{{ $j % 2 != 0 ? 'blue-blue-sky' : '' }}"> 
                                             <div style="width: 50px; text-align: center">
+                                                @if( !empty($summary_value[ $month_first->format('Y')."-". $month_first->format('n') ]) )
                                                 {{ $summary_value[ $month_first->format('Y')."-". $month_first->format('n') ] }}
+                                                @endif
                                             </div>
                                         </th>
 
                                         <th class="{{ $j % 2 != 0 ? 'blue-blue-sky' : '' }}"> 
                                             <div style="width: 65px; text-align: center">
+                                                @if( !empty($summary_percent[ $month_first->format('Y')."-". $month_first->format('n') ]) )
                                                 (<strong>
                                                         {{ $summary_percent[ $month_first->format('Y')."-". $month_first->format('n') ] }}%
                                                 </strong>)
+                                                @endif
                                             </div>
                                         </th>
                                         @php 
                                             $month_first->modify("+1 Month");
                                             endfor;
                                         @endphp
+                                        
+                                        <th colspan="2"> 
+                                            <div style="min-width: 100px; text-align: center">
+                                                {{ round(array_sum($summary_percent) / $diff_month, 2) }}% 
+                                            </div>
+                                        </th>
                                     </tr>
                                 </tbody>
                             </table>
