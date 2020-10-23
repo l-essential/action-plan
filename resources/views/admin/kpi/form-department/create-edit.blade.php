@@ -176,7 +176,15 @@
                                                                 ? $details_by_key[$item->id][ $month_first->format('Y')."-". $month_first->format('n')]->kpi_value : '';
                                                 @endphp
                                                 <td class="text-center input-value"> 
-                                                    <input style="width: 70px;" value="{{ $kpi_value }}" min="1" max="5" type="number" class="form-control" name="kpi_name[{{ $item->id }}][{{ $month_first->format('Y') }}-{{ $month_first->format('m') }}]">
+                                                    <select name="kpi_name[{{ $item->id }}][{{ $month_first->format('Y') }}-{{ $month_first->format('m') }}]" class="form-control">
+                                                        <option value="skip" {{ ($kpi_value == 'skip') ? 'selected' : '' }}> Skip </option>
+                                                        <option value="1" {{ ($kpi_value == '1') ? 'selected' : '' }}> 1 </option>
+                                                        <option value="2" {{ ($kpi_value == '2') ? 'selected' : '' }}> 2 </option>
+                                                        <option value="3" {{ ($kpi_value == '3') ? 'selected' : '' }}> 3 </option>
+                                                        <option value="4" {{ ($kpi_value == '4') ? 'selected' : '' }}> 4 </option>
+                                                        <option value="5" {{ ($kpi_value == '5') ? 'selected' : '' }}> 5 </option>
+                                                    </select>
+                                                    {{-- <input style="width: 70px;" value="{{ $kpi_value }}" min="1" max="5" type="number" class="form-control" name="kpi_name[{{ $item->id }}][{{ $month_first->format('Y') }}-{{ $month_first->format('m') }}]"> --}}
                                                 </td>
                                                 @php 
                                                     $month_first->modify("+1 Month");

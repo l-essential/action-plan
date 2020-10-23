@@ -86,6 +86,7 @@
 
                         $summary_value = [];
                         $summary_percent = [];
+                        $grand_bobot = 0;
                     @endphp
 
                     <div class="panel panel-bordered">
@@ -94,11 +95,11 @@
                             <table id="table-input" class="table">
                                 <thead>
                                     <tr>
-                                        <th rowspan="3">No</th>
-                                        <th rowspan="3">Sasaran mutu / KPI</th>
-                                        <th rowspan="3">Bobot</th>
-                                        <th rowspan="3">Target</th>
-                                        <th class="text-center blue-blue-sky" colspan="{{ $diff_month * 2 }}">
+                                        <th rowspan="2">No</th>
+                                        <th rowspan="2">Sasaran mutu / KPI</th>
+                                        <th rowspan="2">Bobot</th>
+                                        <th rowspan="2">Target</th>
+                                        <th class="text-center blue-blue-sky" colspan="{{ $diff_month }}">
                                             Periode
                                             ( 
                                                 {{ $header->kpi_year_from }}-{{ $header->kpi_month_from }} 
@@ -106,7 +107,9 @@
                                                 {{ $header->kpi_year_until }}-{{ $header->kpi_month_until }} 
                                             )
                                         </th>
-                                        <th style="vertical-align: middle" rowspan="3">Hasil Akhir</th>
+                                        <th style="vertical-align: middle; text-align: center" rowspan="2">Total Nilai</th>
+                                        <th style="vertical-align: middle; text-align: center" rowspan="2">Rata2 Nilai</th>
+                                        <th style="vertical-align: middle; text-align: center" rowspan="2">Total Bobot</th>
                                     </tr> 
 
                                     <tr>
@@ -114,22 +117,9 @@
                                             $month_first = new DateTime($header->kpi_year_from."-".$header->kpi_month_from);
                                             for($j = 1; $j <= $diff_month; $j++):    
                                         @endphp
-                                        <th colspan="2" class="text-center {{ $j % 2 != 0 ? 'blue-blue-sky' : '' }}"> 
+                                        <th class="text-center {{ $j % 2 != 0 ? 'blue-blue-sky' : '' }}"> 
                                             {{ $month_first->format('Y') }} {{ $month_first->format('M') }} 
                                         </th>
-                                        @php 
-                                            $month_first->modify("+1 Month");
-                                            endfor;
-                                        @endphp
-                                    </tr>
-
-                                    <tr>
-                                        @php 
-                                            $month_first = new DateTime($header->kpi_year_from."-".$header->kpi_month_from);
-                                            for($j = 1; $j <= $diff_month; $j++):    
-                                        @endphp
-                                        <th> Nilai </th>
-                                        <th> Persentase {{ $j }} </th>
                                         @php 
                                             $month_first->modify("+1 Month");
                                             endfor;
@@ -146,78 +136,102 @@
                                             <td> {{ $item->master_kpi->kpi_percentage }}% </td>
                                             <td> {{ $item->master_kpi->kpi_target }}% </td>
                                             @php 
+                                                $total_kpi_value = 0;
                                                 $month_first = new DateTime($header->kpi_year_from."-".$header->kpi_month_from);
                                                 for($j = 1; $j <= $diff_month; $j++):    
 
-                                                    $kpi_value = $details_by_key[$item->kpi_department_id][ $month_first->format('Y')."-". $month_first->format('n')]->kpi_value;
-
-                                                    if( empty( $summary_value[$month_first->format('Y')."-". $month_first->format('n')] ) ){
-                                                        $summary_value[ $month_first->format('Y')."-". $month_first->format('n') ] = $kpi_value;
-                                                    }else{
-                                                        $summary_value[ $month_first->format('Y')."-". $month_first->format('n') ] += $kpi_value;
+                                                    if( !empty($details_by_key[$item->kpi_department_id][ $month_first->format('Y')."-". $month_first->format('n')]) )
+                                                    {
+                                                        $kpi_value = $details_by_key[$item->kpi_department_id][ $month_first->format('Y')."-". $month_first->format('n')]->kpi_value;
                                                     }
+                                                    else 
+                                                    {
+                                                        $kpi_value = '';
+                                                    }
+                                                    
+                                                    if(is_numeric($kpi_value))
+                                                    {
+                                                        $total_kpi_value += $kpi_value;
 
-                                                    if( empty( $summary_percent[$month_first->format('Y')."-". $month_first->format('n')] ) ){
-                                                        $summary_percent[ $month_first->format('Y')."-". $month_first->format('n') ] = ($kpi_value / 5) * $item->master_kpi->kpi_percentage;
-                                                    }else{
-                                                        $summary_percent[ $month_first->format('Y')."-". $month_first->format('n') ] += ($kpi_value / 5) * $item->master_kpi->kpi_percentage;
+                                                        if( empty( $summary_value[$month_first->format('Y')."-". $month_first->format('n')] ) ){
+                                                            $summary_value[ $month_first->format('Y')."-". $month_first->format('n') ] = $kpi_value;
+                                                        }else{
+                                                            $summary_value[ $month_first->format('Y')."-". $month_first->format('n') ] += $kpi_value;
+                                                        }
+
+                                                        if( empty( $summary_percent[$month_first->format('Y')."-". $month_first->format('n')] ) ){
+                                                            $summary_percent[ $month_first->format('Y')."-". $month_first->format('n') ] = ($kpi_value / 5) * $item->master_kpi->kpi_percentage;
+                                                        }else{
+                                                            $summary_percent[ $month_first->format('Y')."-". $month_first->format('n') ] += ($kpi_value / 5) * $item->master_kpi->kpi_percentage;
+                                                        }
                                                     }
                                             @endphp
-                                            <td class="text-center input-value {{ $j % 2 != 0 ? 'blue-blue-sky' : '' }}"> 
+                                            <td class="text-center input-value"> 
                                                 <div style="width: 50px; text-align: center">
-                                                    {{ $kpi_value }}
-                                                </div>
-                                            </td>
-
-                                            <td class="text-center {{ $j % 2 != 0 ? 'blue-blue-sky' : '' }}">
-                                                <div style="width: 65px; text-align: center">
-                                                    {{ ($kpi_value / 5) * $item->master_kpi->kpi_percentage }}%
+                                                    @if( is_numeric($kpi_value) )
+                                                        {{ $kpi_value }}
+                                                    @else 
+                                                        <em> {{ $kpi_value }} </em>
+                                                    @endif
                                                 </div>
                                             </td>
                                             @php 
                                                 $month_first->modify("+1 Month");
                                                 endfor;
                                             @endphp
-                                            <td colspan="2"></td>
+
+                                            <td class="blue-blue-sky"> 
+                                                <div style="width: 70px; text-align: center; color: #000;">
+                                                    {{ $total_kpi_value }} 
+                                                </div>
+                                            </td>
+                                            <td class="blue-blue-sky">  
+                                                <div style="width: 70px; text-align: center; color: #000;">
+                                                    {{ round($total_kpi_value / count($summary_value), 4) }}
+                                                </div>
+                                            </td>
+                                            <td class="blue-blue-sky"> 
+                                                <div style="width: 70px; text-align: center; color: #000;">
+                                                    @php 
+                                                    $total_bobot = ($total_kpi_value / count($summary_value)) * ($item->master_kpi->kpi_percentage/100);
+                                                    $grand_bobot += $total_bobot;
+                                                    @endphp
+                                                    {{ round($total_bobot, 4) }}
+                                                </div>
+                                            </td>
                                         </tr>
                                     @endforeach
 
                                     <tr style="background: #fbfbfb; color: #000;">
-                                        <th> </th>
-                                        <th> Total Keseluruhan </th>
-                                        <th></th>
-                                        <th></th>
+                                        <td></td>
+                                        {{-- <td style="text-align: right" colspan="{{ 4 + $diff_month }}"> NILAI AKHIR NYA ADALAH </td> --}}
+                                        <td style="text-align: right; vertical-align: middle; color: #000;"> 
+                                            <h3> NILAI AKHIR NYA ADALAH </h3>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
                                         @php 
                                             $month_first = new DateTime($header->kpi_year_from."-".$header->kpi_month_from);
                                             for($j = 1; $j <= $diff_month; $j++): 
                                         @endphp
-                                        <th class="{{ $j % 2 != 0 ? 'blue-blue-sky' : '' }}"> 
+                                        <th>
                                             <div style="width: 50px; text-align: center">
-                                                @if( !empty($summary_value[ $month_first->format('Y')."-". $month_first->format('n') ]) )
-                                                {{ $summary_value[ $month_first->format('Y')."-". $month_first->format('n') ] }}
-                                                @endif
-                                            </div>
-                                        </th>
-
-                                        <th class="{{ $j % 2 != 0 ? 'blue-blue-sky' : '' }}"> 
-                                            <div style="width: 65px; text-align: center">
-                                                @if( !empty($summary_percent[ $month_first->format('Y')."-". $month_first->format('n') ]) )
-                                                (<strong>
-                                                        {{ $summary_percent[ $month_first->format('Y')."-". $month_first->format('n') ] }}%
-                                                </strong>)
-                                                @endif
+                                                
                                             </div>
                                         </th>
                                         @php 
                                             $month_first->modify("+1 Month");
                                             endfor;
                                         @endphp
-                                        
-                                        <th colspan="2"> 
-                                            <div style="min-width: 100px; text-align: center">
-                                                {{ round(array_sum($summary_percent) / $diff_month, 2) }}% 
+                                        <td></td>
+                                        <td></td>
+                                        <td> 
+                                            <div style="width: 70px; text-align: center">
+                                                <h3>
+                                                    {{ round($grand_bobot, 2) }}
+                                                </h3>
                                             </div>
-                                        </th>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -286,7 +300,7 @@
 
         var deleteFormAction;
         $('td').on('click', '.delete', function (e) {
-            $('#delete_form')[0].action = 'url_delete_nya_guys'.replace('__id', $(this).data('id'));
+            $('#delete_form')[0].action = 'form-department/cancel'.replace('__id', $(this).data('id'));
             $('#delete_modal').modal('show');
         });
 

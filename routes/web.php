@@ -27,4 +27,5 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('kpi/form-department/save', 'Admin\Kpi\FormDepartmentController@save');
     Route::get('kpi/form-department/edit', 'Admin\Kpi\FormDepartmentController@edit');
     Route::post('kpi/form-department/update', 'Admin\Kpi\FormDepartmentController@update');
+    Route::delete('kpi/form-department/cancel/{id}', 'Admin\Kpi\FormDepartmentController@cancel');
 });

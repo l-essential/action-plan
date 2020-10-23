@@ -29,6 +29,11 @@ class KpiTrxDepartmentPolicy
         
     }
 
+    public function cancel(User $user, KpiTrxDepartment $trx)
+    {
+        return $user->id == $trx->created_by && $trx->kpi_status == 'Draft';
+    }
+
     /**
      * Determine whether the user can create kpi form departments.
      *

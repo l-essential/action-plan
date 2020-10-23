@@ -155,7 +155,21 @@
                                             </td>
 
                                             <td> {{ $objDepartment->detail(['KodeSeksi' => $item->department_id])->namaSeksi }} </td>
-                                            <td> {{ $item->kpi_status }} </td>
+                                            <td> 
+                                                @if( $item->kpi_status == 'Canceled' )
+                                                    <span class="badge badge-danger">
+                                                        {{ $item->kpi_status }}
+                                                    </span>
+                                                @elseif( $item->kpi_status == 'Approved' )
+                                                    <span class="badge badge-success">
+                                                        {{ $item->kpi_status }}
+                                                    </span>
+                                                @else
+                                                    <span class="badge badge-light">
+                                                        {{ $item->kpi_status }}
+                                                    </span>
+                                                @endif
+                                            </td>
                                             <td> {{ $item->user->name }} </td>
                                             <td> {{ $item->created_at }} </td>
                                             <td>
@@ -241,7 +255,7 @@
 
         var deleteFormAction;
         $('td').on('click', '.delete', function (e) {
-            $('#delete_form')[0].action = 'url_delete_nya_guys'.replace('__id', $(this).data('id'));
+            $('#delete_form')[0].action = 'form-department/cancel/__id'.replace('__id', $(this).data('id'));
             $('#delete_modal').modal('show');
         });
 

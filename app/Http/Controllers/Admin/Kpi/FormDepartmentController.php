@@ -156,7 +156,8 @@ class FormDepartmentController extends Controller
         DB::commit();
 
         # alihkan
-        return redirect("admin/kpi/form-department/edit?id=". $input['header']['id']);
+        $message = ['alert-type' => 'success', "message" => "Berhasil simpan data KPI"];
+        return redirect("admin/kpi/form-department/edit?id=". $input['header']['id'])->with($message);
     }
 
     public function update(Request $request)
@@ -187,7 +188,26 @@ class FormDepartmentController extends Controller
         DB::commit();
 
         # alihkan
-        return redirect("admin/kpi/form-department/edit?id=". $id);
+        $message = ['alert-type' => 'success', "message" => "Berhasil perbarui data KPI"];
+        return redirect("admin/kpi/form-department/edit?id=". $id)->with($message);
+    }
+
+    public function cancel(Request $request, $id)
+    {
+        # param 
+        $objTrx = new KpiTrxDepartment;
+
+        # data sebelum nya 
+        $header = $objTrx->find($id);
+        
+        # valid
+        if( Auth::user()->can('cancel', $header) !== true) 
+        {
+            $message = ['alert-type' => 'error', "message" => "Anda tidak memilik hak akses untuk membatalkan data ini"];
+            return redirect()->back()->with($message);
+        }
+
+        $objTrx->where('id', $id)->update(['kpi_status' => 'Canceled']);
     }
 
     public function _getInput($request, $event = 'create')
