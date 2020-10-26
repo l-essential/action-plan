@@ -10,7 +10,7 @@ class KpiDepartment extends Model
 {
     use Translatable;
     protected $translatable = ['kpi_name', 'description'];
-    // public $additional_attributes = ['depart_name'];
+    // public $additional_attributes = ['kpi_notes_value'];
 
     // public function getDepartNameAttribute()
     // {

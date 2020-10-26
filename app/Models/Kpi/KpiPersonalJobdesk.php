@@ -1,6 +1,7 @@
 <?php namespace App\Models\Kpi;
 
 use App\Models\Hris\MS_Department;
+use App\Models\Hris\MS_Division;
 use App\Models\Hris\MS_Karyawan;
 use App\Models\Hris\Tbl_Level;
 use Illuminate\Database\Eloquent\Model;
@@ -18,6 +19,22 @@ class KpiPersonalJobdesk extends Model
         'kpi_notes_4',
         'kpi_notes_5'
     ];
+
+    public function getDivisionIdBrowseAttribute()
+    {
+        $depart = new MS_Division;
+        $depart = $depart->detail(['kodeDepartment' => $this->division_id]);
+
+        return $depart->namaDepartment ?? '';
+    }
+
+    public function getDivisionIdReadAttribute()
+    {
+        $depart = new MS_Division;
+        $depart = $depart->detail(['kodeDepartment' => $this->division_id]);
+
+        return $depart->namaDepartment ." (". $depart->kodeDepartment .")" ?? '';
+    }
 
     public function getDepartmentIdBrowseAttribute()
     {

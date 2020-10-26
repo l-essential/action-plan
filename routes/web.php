@@ -28,4 +28,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('kpi/form-department/edit', 'Admin\Kpi\FormDepartmentController@edit');
     Route::post('kpi/form-department/update', 'Admin\Kpi\FormDepartmentController@update');
     Route::delete('kpi/form-department/cancel/{id}', 'Admin\Kpi\FormDepartmentController@cancel');
+
+    Route::get('kpi/form-department/modal_value_notes', 'Admin\Kpi\FormDepartmentController@modal_value_notes');
 });

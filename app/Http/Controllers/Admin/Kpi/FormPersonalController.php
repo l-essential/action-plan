@@ -1,19 +1,15 @@
-<?php
-
-namespace App\Http\Controllers\Admin\Kpi;
+<?php namespace App\Http\Controllers\Admin\Kpi;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Hris\MS_Karyawan;
-use App\Models\Kpi\KpiDepartment;
-use App\Models\Kpi\KpiTrxDepartment;
-use App\Models\Kpi\KpiTrxDepartmentDetail;
+use App\Models\Kpi\KpiTrxPersonal;
 use App\User;
 use ModelInit;
 use Auth;
 use DB;
 
-class FormDepartmentController extends Controller
+class FormPersonalController extends Controller
 {
     
     public function index()
@@ -21,25 +17,25 @@ class FormDepartmentController extends Controller
         # param 
         $data = [];
 
-        $objTrx = new KpiTrxDepartment;
+        $objTrx = new KpiTrx;
         $query = $objTrx->orderBy(\DB::raw("CONCAT(kpi_year_from, '-', kpi_month_from)"));
 
         # hak akses
-        if( Auth::user()->can('browse_all', KpiTrxDepartment::class) !== true )
-        {
-            $employee = new MS_Karyawan;
-            $employee = $employee->detail(['NIK' => Auth::user()->nik]);
+        // if( Auth::user()->can('browse_all', KpiTrxDepartment::class) !== true )
+        // {
+        //     $employee = new MS_Karyawan;
+        //     $employee = $employee->detail(['NIK' => Auth::user()->nik]);
 
-            $query->where('department_id', $employee->KodeSeksi);
-        }
-        else 
-        {
-            # filter data 
-            if( !empty(app('request')->input('department_id')) )
-            {
-                $query->where('department_id', app('request')->input('department_id'));
-            }
-        }
+        //     $query->where('department_id', $employee->KodeSeksi);
+        // }
+        // else 
+        // {
+        //     # filter data 
+        //     if( !empty(app('request')->input('department_id')) )
+        //     {
+        //         $query->where('department_id', app('request')->input('department_id'));
+        //     }
+        // }
 
         # filter data 
         if( !empty(app('request')->input('periode')) )
@@ -263,21 +259,6 @@ class FormDepartmentController extends Controller
         }
 
         return ['header' => $input, 'detail' => $detail];
-    }
-
-    public function modal_value_notes()
-    {
-        # id kpi department 
-        $id = app('request')->input('id');
-
-        # data 
-        $objMas = new KpiDepartment();
-        $data = $objMas->find($id);
-
-        return response()->json([
-            'success' => true,
-            "data" => $data
-        ]);
     }
 
 }

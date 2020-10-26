@@ -99,6 +99,7 @@
                                         <th rowspan="2">Sasaran mutu / KPI</th>
                                         <th rowspan="2">Bobot</th>
                                         <th rowspan="2">Target</th>
+                                        <th rowspan="2">Ketentuan Nilai</th>
                                         <th class="text-center blue-blue-sky" colspan="{{ $diff_month }}">
                                             Periode
                                             ( 
@@ -135,6 +136,11 @@
                                             <td> {{ $item->master_kpi->kpi_name }} </td>
                                             <td> {{ $item->master_kpi->kpi_percentage }}% </td>
                                             <td> {{ $item->master_kpi->kpi_target }}% </td>
+                                            <td class="text-center"> 
+                                                <a href="javascript:void(0)" onclick="modalViewNotesValue('{{ $item->master_kpi->id }}')">
+                                                    <span class="voyager-search"></span>
+                                                </a>
+                                            </td>
                                             @php 
                                                 $total_kpi_value = 0;
                                                 $month_first = new DateTime($header->kpi_year_from."-".$header->kpi_month_from);
@@ -210,6 +216,7 @@
                                         </td>
                                         <td></td>
                                         <td></td>
+                                        <td></td>
                                         @php 
                                             $month_first = new DateTime($header->kpi_year_from."-".$header->kpi_month_from);
                                             for($j = 1; $j <= $diff_month; $j++): 
@@ -244,6 +251,54 @@
 
         </form>
     </div>
+
+    <div id="modal-view-notes-value" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('voyager::generic.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">
+                        <span class="voyager-trophy"></span>
+                        Ketentuan Penilaian
+                    </h4>
+                </div>
+
+                <div class="modal-body">
+                    <table class="table">
+                        <tr>
+                            <td style="min-width: 100px">Nama KPI</td>
+                            <th class="col-kpi-name"></th>
+                        </tr>
+
+                        <tr>
+                            <td style="min-width: 100px">Nilai 1</td>
+                            <th class="col-kpi-notes-1"></th>
+                        </tr>
+
+                        <tr>
+                            <td style="min-width: 100px">Nilai 2</td>
+                            <th class="col-kpi-notes-2"></th>
+                        </tr>
+
+                        <tr>
+                            <td style="min-width: 100px">Nilai 3</td>
+                            <th class="col-kpi-notes-3"></th>
+                        </tr>
+
+                        <tr>
+                            <td style="min-width: 100px">Nilai 4</td>
+                            <th class="col-kpi-notes-4"></th>
+                        </tr>
+
+                        <tr>
+                            <td style="min-width: 100px">Nilai 5</td>
+                            <th class="col-kpi-notes-5"></th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
 
 @section('css')
@@ -254,10 +309,6 @@
         .blue-blue-sky {
             background: #e7f5ff;
         }
-
-        /* .table .input-value:nth-child(even) {
-            background: #fff;
-        } */
 
         th, td { word-break: break-word !important; }
         table.dataTable tbody td {
@@ -293,9 +344,39 @@
                     { width: 50, targets: 0 },
                     { width: 400, targets: 1 },
                     { width: 90, targets: 2 },
-                    { width: 90, targets: 3 }
+                    { width: 90, targets: 3 },
+                    { width: 70, targets: 4 }
                 ]
             });
         });
+
+        function modalViewNotesValue(id)
+        {
+            $.ajax({
+                method: "GET",
+                url: "{{ url('admin/kpi/form-department/modal_value_notes') }}",
+                data: {
+                    id: id
+                },
+                dataType: 'json',
+                success: function(res)
+                {
+                    var modal_id = "#modal-view-notes-value";
+
+                    $(modal_id + " .col-kpi-name").html(res.data.kpi_name);
+                    $(modal_id + " .col-kpi-notes-1").html(res.data.kpi_notes_1);
+                    $(modal_id + " .col-kpi-notes-2").html(res.data.kpi_notes_2);
+                    $(modal_id + " .col-kpi-notes-3").html(res.data.kpi_notes_3);
+                    $(modal_id + " .col-kpi-notes-4").html(res.data.kpi_notes_4);
+                    $(modal_id + " .col-kpi-notes-5").html(res.data.kpi_notes_5);
+
+                    $(modal_id).modal("show");
+                },
+                error: function(err)
+                {
+                    console.log(err);
+                }
+            });
+        }
     </script>
 @stop
