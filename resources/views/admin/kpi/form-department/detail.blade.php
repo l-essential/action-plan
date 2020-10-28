@@ -193,13 +193,20 @@
                                             </td>
                                             <td class="blue-blue-sky">  
                                                 <div style="width: 70px; text-align: center; color: #000;">
+                                                    @if( is_numeric($total_kpi_value) && $total_kpi_value > 0 )
                                                     {{ round($total_kpi_value / count($summary_value), 4) }}
+                                                    @endif
                                                 </div>
                                             </td>
                                             <td class="blue-blue-sky"> 
                                                 <div style="width: 70px; text-align: center; color: #000;">
                                                     @php 
-                                                    $total_bobot = ($total_kpi_value / count($summary_value)) * ($item->master_kpi->kpi_percentage/100);
+                                                    if( is_numeric($total_kpi_value) && $total_kpi_value > 0 )
+                                                    {
+                                                        $total_bobot = ($total_kpi_value / count($summary_value)) * ($item->master_kpi->kpi_percentage/100);
+                                                    }else{
+                                                        $total_bobot = 0;
+                                                    }
                                                     $grand_bobot += $total_bobot;
                                                     @endphp
                                                     {{ round($total_bobot, 4) }}

@@ -74,6 +74,13 @@ class FormDepartmentController extends Controller
 
         # ambil data 
         $data['header'] = $objTrx->find($id);
+
+        if( empty($data['header']) )
+        {
+            return redirect()->back();
+        }
+
+        # ambil data part 2
         $data['details'] = $objTrxDtl->select('kpi_department_id')
                                     ->distinct()
                                     ->where('id', $id)
@@ -242,9 +249,14 @@ class FormDepartmentController extends Controller
         {
             $kpi_name = $request->input('kpi_name');
 
+            $grand_bobot = 0;
+
             $id_detail = 1;
             foreach ($kpi_name as $id_master => $arr_grade)
             {
+                $master_kpi = KpiDepartment::find($id_master);
+                $summary_value = [];
+
                 foreach ($arr_grade as $year_month => $grade) 
                 {
                     $detail[] = [
@@ -255,11 +267,26 @@ class FormDepartmentController extends Controller
                         'kpi_year' => explode("-", $year_month)[0],
                         'kpi_month' => explode("-", $year_month)[1],
                         'kpi_value' => $grade
-                    ];  
+                    ];
 
                     $id_detail++;
+
+                    if( is_numeric($grade) ){
+                        $summary_value[] = $grade;
+                    }
                 } 
+
+                if( count($summary_value) > 0 )
+                {
+                    $avg_value   = (array_sum($summary_value) / count($summary_value));
+                    $grand_bobot += $avg_value * ($master_kpi->kpi_percentage / 100);
+
+                    // dd( $avg_value );
+                    // dd( ($master_kpi->kpi_percentage / 100) );
+                }
             }
+
+            $input['kpi_final_value'] = $grand_bobot;
         }
 
         return ['header' => $input, 'detail' => $detail];

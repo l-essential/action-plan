@@ -137,6 +137,7 @@
                                         <th>Periode</th>
                                         <th>Departemen</th>
                                         <th>Status</th>
+                                        <th>Nilai Akhir</th>
                                         <th>Dibuat Oleh</th>
                                         <th>Dibuat Tgl</th>
                                         <th class="actions text-right">{{ __('voyager::generic.actions') }}</th>
@@ -170,6 +171,7 @@
                                                     </span>
                                                 @endif
                                             </td>
+                                            <td> {{ round($item->kpi_final_value, 2) }} </td>
                                             <td> {{ $item->user->name }} </td>
                                             <td> {{ $item->created_at }} </td>
                                             <td>
