@@ -256,7 +256,7 @@
                 </div>
             </div>
 
-        </form>
+        
     </div>
 
     <div id="modal-view-notes-value" class="modal">

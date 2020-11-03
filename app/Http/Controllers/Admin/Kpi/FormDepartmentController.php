@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Kpi;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Hris\MS_Department;
 use App\Models\Hris\MS_Karyawan;
 use App\Models\Kpi\KpiDepartment;
 use App\Models\Kpi\KpiTrxDepartment;
@@ -305,6 +306,66 @@ class FormDepartmentController extends Controller
             'success' => true,
             "data" => $data
         ]);
+    }
+
+    public function report()
+    {
+        # param 
+        $data = [];
+
+        # ambil data 
+        $objTrx = new KpiTrxDepartment;
+        $query = $objTrx->select('kpi_year_from', 'kpi_month_from', 'kpi_year_until', 'kpi_month_until')
+                    ->distinct()
+                    ->orderBy(\DB::raw("CONCAT(kpi_year_from, '-', kpi_month_from)"));
+        $data['periodes'] = $query->get();
+
+        $data['charts'] = [];
+
+        $objDpt = new MS_Department;
+        $departments = $objDpt->table()->get();
+        $data['departments'] = [];
+        foreach ($departments as $kd => $vd) 
+        {
+            $data['departments'][ $vd->KodeSeksi ] = $vd;
+        }
+
+        if( !empty(app('request')->input('submit')) && !empty( app('request')->input('periode') ) )
+        {
+            # ambil param report
+            $periode = app('request')->input('periode');
+            $periode = explode("_", $periode);
+            $period_year_from = explode("-", $periode[0])[0];
+            $period_month_from = explode("-", $periode[0])[1];
+            $period_year_until = explode("-", $periode[1])[0];
+            $period_month_until = explode("-", $periode[1])[1];
+
+            # ambil report 
+            if( !empty( app('request')->input('department_id') ) )
+            {
+                $objTrx = new KpiTrxDepartment;
+                $data['header'] = $objTrx->where('kpi_year_from', $period_year_from)
+                            ->where('kpi_month_from', $period_month_from)
+                            ->where('kpi_year_until', $period_year_until)
+                            ->where('kpi_month_until', $period_month_until)
+                            ->where('department_id', app('request')->input('department_id'))
+                            ->first();
+            }
+            else
+            {
+                $objTrx = new KpiTrxDepartment;
+                $data['charts'] = $objTrx->select('department_id', 'kpi_final_value')
+                                        ->distinct()
+                                        ->where('kpi_year_from', $period_year_from)
+                                        ->where('kpi_month_from', $period_month_from)
+                                        ->where('kpi_year_until', $period_year_until)
+                                        ->where('kpi_month_until', $period_month_until)
+                                        ->get();
+            }
+        }
+
+        # lempar view
+        return view('admin/kpi/form-department.report')->with($data);
     }
 
 }
