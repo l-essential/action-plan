@@ -30,7 +30,11 @@ class KpiDepartment extends Model
         $depart = new MS_Department;
         $depart = $depart->detail(['KodeSeksi' => $this->department_id]);
 
-        return $depart->namaSeksi ." (". $depart->KodeSeksi .")" ?? '';
+        if(!empty($depart)){
+            return $depart->namaSeksi ." (". $depart->KodeSeksi .")" ?? '';   
+        }else{
+            return "";
+        }
     }
 
     public function getDepartmentIdReadAttribute()

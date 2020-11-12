@@ -1,6 +1,6 @@
 @php 
-    use App\Models\Hris\MS_Department;
-    use App\Models\Reker\RekerDepartment;
+    use App\Models\Hris\MS_Karyawan;
+    use App\Models\Reker\RekerPic;
 
     // if( isset($dataTypeContent->{$row->field}) ){
     //     $department_selected = old($row->field, $dataTypeContent->{$row->field});
@@ -8,10 +8,10 @@
     //     $department_selected = old($row->field);
     // }
 
-    $department_selected = [];
+    $employee_selected = [];
 
-    $departments = new MS_Department;
-    $departments = $departments->table()->where('KodeSeksi', '!=', '_mgr_')->orderBy('namaSeksi')->get();
+    $employees = new MS_Karyawan;
+    $employees = $employees->table()->whereRaw('tglPengunduranDiri IS NULL')->orderBy('namaKaryawan')->get();
 @endphp
 
 @if( !empty($options->multiple) && $options->multiple == "Y" )
@@ -19,19 +19,19 @@
     @php
         if(!empty($options->data_source) && $options->data_source == "reker")
         {
-            $objReker = new RekerDepartment();
+            $objReker = new RekerPic();
             $details  = $objReker->where('id', $dataTypeContent->id)->get();
             foreach ($details as $key => $value) {
-                $department_selected[] = $value->department_id;
+                $employee_selected[] = $value->nik;
             }
         }
     @endphp
 
     <select data-live-search="true" class="form-control select2" multiple name="{{ $row->field }}[]" data-name="{{ $row->display_name }}" @if($row->required == 1) required @endif>
         <option value=""> -- Pilih -- </option>
-        @foreach( $departments as $dep )
-        <option value="{{ $dep->KodeSeksi }}" {{ in_array($dep->KodeSeksi, $department_selected) ? 'selected' : '' }}> 
-            {{ $dep->namaSeksi }} 
+        @foreach( $employees as $emp )
+        <option value="{{ $emp->NIK }}" {{ in_array($emp->NIK, $employee_selected) ? 'selected' : '' }}> 
+            {{ $emp->namaKaryawan }} 
         </option>
         @endforeach
     </select>
@@ -40,9 +40,9 @@
 
     <select data-live-search="true" class="form-control selectpicker" name="{{ $row->field }}" data-name="{{ $row->display_name }}" @if($row->required == 1) required @endif>
         <option value=""> -- Pilih -- </option>
-        @foreach( $departments as $dep )
-        <option value="{{ $dep->KodeSeksi }}" {{ $department_selected == $dep->KodeSeksi ? 'selected' : '' }}> 
-            {{ $dep->namaSeksi }} 
+        @foreach( $employees as $emp )
+        <option value="{{ $emp->NIK }}" {{ $employee_selected == $emp->NIK ? 'selected' : '' }}> 
+            {{ $emp->namaKaryawan }} 
         </option>
         @endforeach
     </select>

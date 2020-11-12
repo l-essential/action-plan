@@ -31,4 +31,6 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('kpi/form-department/report', 'Admin\Kpi\FormDepartmentController@report');
     Route::get('kpi/form-department/modal_value_notes', 'Admin\Kpi\FormDepartmentController@modal_value_notes');
+
+    Route::get('rekers/{id}/detail_card', 'Admin\Reker\RekerController@detail_card');
 });
