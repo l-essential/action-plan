@@ -2,6 +2,7 @@
 
 use App\Models\Hris\MS_Department;
 use App\Models\Hris\MS_Division;
+use App\Models\Hris\MS_Jabatan;
 use App\Models\Hris\MS_Karyawan;
 use App\Models\Hris\Tbl_Level;
 use Illuminate\Database\Eloquent\Model;
@@ -54,18 +55,18 @@ class KpiPersonalJobdesk extends Model
 
     public function getLevelIdBrowseAttribute()
     {
-        $level = new Tbl_Level;
-        $level = $level->detail(['kode_level' => $this->level_id]);
+        $level = new MS_Jabatan;
+        $level = $level->detail(['kodeJabatan' => $this->level_id]);
 
-        return $level->nama_level ?? '';
+        return $level->namaJabatan ?? '';
     }
 
     public function getLevelIdReadAttribute()
     {
-        $level = new Tbl_Level;
-        $level = $level->detail(['kode_level' => $this->level_id]);
+        $level = new MS_Jabatan;
+        $level = $level->detail(['kodeJabatan' => $this->level_id]);
 
-        return $level->nama_level ?? '';
+        return $level->namaJabatan ?? '';
     }
 
 }

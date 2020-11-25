@@ -6,6 +6,7 @@ use TCG\Voyager\Facades\Voyager;
 use App\Voyager\DepartmentField;
 use App\Voyager\DivisionField;
 use App\Voyager\EmployeeField;
+use App\Voyager\JabatanField;
 use App\Voyager\LevelField;
 use App\Voyager\MyDepartmentField;
 use App\Voyager\MyUserField;
@@ -36,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
         Voyager::addFormField(EmployeeField::class);
         Voyager::addFormField(SectionField::class);
         Voyager::addFormField(LevelField::class);
+        Voyager::addFormField(JabatanField::class);
         Voyager::addFormField(MyUserField::class);
         Voyager::addFormField(MyDepartmentField::class);
     }

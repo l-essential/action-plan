@@ -32,5 +32,13 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('kpi/form-department/report', 'Admin\Kpi\FormDepartmentController@report');
     Route::get('kpi/form-department/modal_value_notes', 'Admin\Kpi\FormDepartmentController@modal_value_notes');
 
+    Route::get('kpi/form-employee', 'Admin\Kpi\FormEmployeeController@index');
+    Route::get('kpi/form-employee/create', 'Admin\Kpi\FormEmployeeController@create');
+    Route::post('kpi/form-employee/save', 'Admin\Kpi\FormEmployeeController@save');
+    Route::get('kpi/form-employee/edit', 'Admin\Kpi\FormEmployeeController@edit');
+    Route::post('kpi/form-employee/update', 'Admin\Kpi\FormEmployeeController@update');
+    Route::get('kpi/form-employee/modal_value_notes', 'Admin\Kpi\FormEmployeeController@modal_value_notes');
+
+    Route::get('rekers/rpt/key', 'Admin\Reker\RekerController@rpt_key');
     Route::get('rekers/{id}/detail_card', 'Admin\Reker\RekerController@detail_card');
 });

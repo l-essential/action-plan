@@ -20,16 +20,33 @@ class RekerController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControlle
         # object
         $objTrx = new Reker();
         $objTrxPer = new RekerPeriode();
+        $objDepart = new MS_Department();
 
         # param
         $periode_id = $id;
         $department_id = app('request')->input('department_id');
+        $periode_from = app('request')->input('periode_from');
+        $periode_until = app('request')->input('periode_until');
         $data['department_id'] = $department_id;
+
+        if( !empty($periode_from) && !empty($periode_until) )
+        {
+            $query_periode = $objTrxPer->where('periode_from', $periode_from)
+                                ->where('periode_until', $periode_until)
+                                ->first();
+            if( !empty($query_periode) ){
+                $periode_id = $query_periode->id;
+            }
+        }
 
         $query = $objTrx->where('periode_id', $periode_id)
                     ->where('department_id', $department_id);
 
         $data['cards'] = $query->get();
+
+        if( count($data['cards']) == 0 ){
+            return abort(404);
+        }
 
         # pecah 
         $data['card_cat1'] = [];
@@ -233,6 +250,67 @@ class RekerController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControlle
         }
 
         return ['input' => $input, 'department' => $department, 'pic' => $pic];
+    }
+
+    public function rpt_key()
+    {
+        $data = [];
+
+        $request = app('request');
+        $objTrx = new Reker();
+        $objTrxPer = new RekerPeriode();
+        $objTrxDept = new RekerDepartment();
+        $objTrxPic = new RekerPic();
+
+        $query = $objTrxPer->orderBy('periode_from', 'asc')
+                            ->orderBy('periode_until', 'asc')
+                            ->get();
+
+        $data['periodes'] = $query;
+
+        if( !empty(app('request')->input('submit')) )
+        {
+            $query = DB::table($objTrx->getTable() . " AS r")
+                    ->select('r.*', 'p.periode_from', 'p.periode_until')
+                    ->orderBy('p.periode_from', 'asc')
+                    ->orderBy('p.periode_until', 'asc')
+                    ->orderBy('r.department_id', 'asc')
+                    ->leftJoin($objTrxPer->getTable() . " AS p", "p.id", "=", "r.periode_id");
+
+            $ids = [];
+
+            if( !empty($request->input('department_id')) )
+            {
+                $aku_lelah = $objTrxDept->whereIn('department_id', $request->input('department_id'))->get();
+                foreach ($aku_lelah as $key => $value) 
+                {
+                    $ids[] = $value->id;
+                }
+            }
+
+            if( !empty($request->input('nik')) )
+            {
+                $aku_lelah = $objTrxPic->whereIn('nik', $request->input('nik'))->get();
+                foreach ($aku_lelah as $key => $value) 
+                {
+                    $ids[] = $value->id;
+                }
+            }
+
+            if(!empty($ids)){
+                $query->whereIn('r.id', $ids);
+            }
+    
+            if( !empty($request->input('periode')) ){
+                $query->where('r.periode_id', $request->input('periode'));
+            }
+    
+            $data['rekers'] = $query->get();
+
+            return view('vendor/voyager/rekers.excel')->with($data);
+        }
+
+        return view('vendor/voyager/rekers.rpt_key')->with($data);
     }
 
 }
