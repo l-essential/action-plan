@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Hris\MS_Department;
 use App\Models\Hris\MS_Jabatan;
 use App\Models\Hris\MS_Karyawan;
+use App\Models\Hris\TR_AbsenTidakMasuk;
 use App\Models\Kpi\KpiDepartment;
 use App\Models\Kpi\KpiTrxDepartment;
 use App\Models\Kpi\KpiTrxDepartmentDetail;
@@ -172,7 +173,29 @@ class FormEmployeeController extends Controller
                 $data['list_employees'][$vme->kodeJabatan][] = $vme;
             }
         }
-   
+
+        # ambil data kehadiran
+        $form_permohonan = new TR_AbsenTidakMasuk();
+        $form_permohonan = $form_permohonan->table('tat')
+                                ->select(\DB::raw('COUNT(tat.tanggalTidakMasuk) as total'))
+                                ->addSelect('tat.NIK', 'ms_t.namaTidakHadir')
+                                ->leftJoin('MS_TidakHadir AS ms_t', 'ms_t.kodeTidakHadir', '=', 'tat.kodeTidakHadir')
+                                ->whereYear('tanggalTidakMasuk', '>=', $data['header']->kpi_year_from)
+                                ->whereMonth('tanggalTidakMasuk', '>=', $data['header']->kpi_month_from)
+                                ->whereYear('tanggalTidakMasuk', '<=', $data['header']->kpi_year_until)
+                                ->whereMonth('tanggalTidakMasuk', '<=', $data['header']->kpi_month_until)
+                                ->where('NIK', '2019072843')
+                                ->whereIn('tat.kodeTidakHadir', [
+                                    'S',
+                                    'I',
+                                    'A',
+                                    'C',
+                                    'IPC',
+                                    'CK'
+                                ])
+                                ->groupBy(['NIK', 'ms_t.namaTidakHadir'])
+                                ->get();
+        
         # lempar view
         return view('admin/kpi/form-employee.create-edit')->with($data);
     }
@@ -286,8 +309,11 @@ class FormEmployeeController extends Controller
             $kpi_weight = $request->input('kpi_weight');
             $kpi_value = $request->input('kpi_value');
 
-            $id_detail = 1;
+            $jobdesk_custom = $request->input('jobdesk_custom');
+            $kpi_weight_custom = $request->input('kpi_weight_custom');
+            $kpi_value_custom = $request->input('kpi_value_custom');
 
+            $id_detail = 1;
 
             foreach($nik as $knik => $vnik)
             {
@@ -317,6 +343,11 @@ class FormEmployeeController extends Controller
     
                         $id_detail++;
                     }
+                }
+
+                foreach($jobdesk_custom[$vnik] as $kjob_c => $vjob_c)
+                {
+                    
                 }
             }
         }

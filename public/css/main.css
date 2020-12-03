@@ -32,3 +32,11 @@
 #my-page-content {
     padding-top: 40px;
 }
+
+body {
+    color: #000 !important;
+}
+
+.table {
+    color: #000 !important;
+}

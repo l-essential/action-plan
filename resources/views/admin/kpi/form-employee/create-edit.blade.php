@@ -215,48 +215,72 @@
 
 @section('javascript')
     <!-- DataTables -->
-    <script src="{{ voyager_asset('lib/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('plugins/datatables/fixedColumn.min.js') }}"></script>
+    {{-- <script src="{{ voyager_asset('lib/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('plugins/datatables/fixedColumn.min.js') }}"></script> --}}
+    <script src="{{ asset('plugins/freeze-table/js/freeze-table.min.js') }}"></script> --}}
     <script>
+        var myDataTable;
+
         $(document).ready(function () 
         {
             drawDataTableInput();
+
+            setTimeout(function(){
+                $('.collapse-content').collapse('hide');
+            }, 1500);
         });
 
         function drawDataTableInput()
         {
-            // var table = $('.table-input').DataTable({
-            //     scrollY: "600px",
-            //     scrollX: true,
-            //     scrollCollapse: true,
-            //     paging: false,
-            //     searching: false,
-            //     fixedColumns: {
-            //         leftColumns: 1,
-            //     },
-            //     columnDefs: [
-            //         { width: 200, targets: 0 },
-            //         { width: 140, targets: 1 },
-            //         { width: 125, targets: 2 }
-            //     ]
-            // });
-
-            // setTimeout(function(){
-            //     table.order([0, 'asc']).draw();
-            // }, 1200);
+            // $('.freeze-table').freezeTable({});
         }
+
+        // function drawDataTableInput()
+        // {
+        //     myDataTable = $('.table-input').DataTable({
+        //         scrollY: "600px",
+        //         scrollX: true,
+        //         scrollCollapse: true,
+        //         paging: false,
+        //         searching: false,
+        //         bInfo: false,
+        //         fixedColumns: {
+        //             leftColumns: 1,
+        //         },
+        //         columnDefs: [
+        //             { width: 200, targets: 0 },
+        //             { width: 140, targets: 1 },
+        //             { width: 125, targets: 2 }
+        //         ]
+        //     });
+
+        //     setTimeout(function(){
+        //         myDataTable.order([0, 'asc']).draw();
+        //     }, 1200);
+        // }
 
         function addRowJobdesk(obj)
         {
+            // myDataTable.clear();
+            // myDataTable.destroy();
+
             var objTable = $(obj).closest('.collapse-content');
             var trCustomHtml = objTable.find('table tbody tr.custom').html();
             objTable.find('tbody').append('<tr> '+ trCustomHtml + ' </tr>');
+
+            $('.freeze-table').freezeTable('update');
         }
 
         function deleteRowJobdesk(obj)
         {
-            var objTr = $(obj).closest('tr');
-            objTr.remove();
+            var objTbl = $(obj).closest("table");
+
+            if( objTbl.find("tbody tr").length > 1 ){
+                var objTr = $(obj).closest('tr');
+                objTr.remove();
+            }else{
+                window.alert("Maksimal 1 baris");
+            }
         }
 
         function modalViewNotesValue(id)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Reker;
 use DB;
 use Auth;
 use App\Models\Hris\MS_Department;
+use App\Models\Hris\MS_Karyawan;
 use App\Models\Reker\Reker;
 use App\Models\Reker\RekerDepartment;
 use App\Models\Reker\RekerPeriode;
@@ -126,12 +127,18 @@ class RekerController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControlle
                     ->leftJoin($objTrxPer->getTable() . " AS p", "p.id", "=", "r.periode_id");
         }
 
-        if( !empty($request->input('department_id')) ){
-            $query->where('r.department_id', $request->input('department_id'));
-        }
-
         if( !empty($request->input('periode')) ){
             $query->where('r.periode_id', $request->input('periode'));
+        }
+
+        if( \ModelInit::canIAccess('browse_all_'.$objTrx->getTable()) )
+        {
+            if( !empty($request->input('department_id')) ){
+                $query->where('r.department_id', $request->input('department_id'));
+            }
+        }else{
+            $my_employee = new MS_Karyawan();
+            $query->where('r.department_id', $my_employee->myData()->KodeSeksi);
         }
 
         $data['rekers'] = $query->get();
