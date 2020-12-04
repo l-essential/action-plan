@@ -35,7 +35,7 @@ class Reker extends Model
 
     public function canIEdit($item)
     {
-        if( \ModelInit::canIAccess('edit_'.$this->getTable()) && $item->created_by == Auth::user()->id && session('periode_'.$item->periode_id) == 'Y' ){
+        if( \ModelInit::canIAccess('edit_'.$this->getTable()) && $item->created_by == Auth::user()->id && session('periode_'.$item->periode_id) == 'N' ){
             return TRUE;
         }else{
             return FALSE;
