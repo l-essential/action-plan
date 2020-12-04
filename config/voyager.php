@@ -196,7 +196,7 @@ return [
     'additional_js' => [
         'plugins/bootstrap-select/main.min.js',
 
-        'js/admin/init.js'
+        'js/admin/init.js?v=1.0.0'
     ],
 
     'googlemaps' => [

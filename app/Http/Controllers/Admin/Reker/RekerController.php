@@ -195,10 +195,10 @@ class RekerController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControlle
 
             $objReker->where('id', $id)->update($input['input']);
 
-            $objRekerDepart->delete();
+            $objRekerDepart->where('id', $id)->delete();
             $objRekerDepart->insert($input['department']);
 
-            $objRekerPic->delete();
+            $objRekerPic->where('id', $id)->delete();
             $objRekerPic->insert($input['pic']);
         });
         
