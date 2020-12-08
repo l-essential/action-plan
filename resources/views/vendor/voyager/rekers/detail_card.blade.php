@@ -103,13 +103,13 @@
                                         @if($ki == 0)
                                             <td class='vertical-td bg-orange' rowspan="{{ count($card_cat1) }}"> Internal Business Process </td>
                                         @endif
-                                        <td> {{ $item->objective }} </td>
-                                        <td> {{ $item->target }} </td>
-                                        <td> {{ $item->q1 }} </td>
-                                        <td> {{ $item->q2 }} </td>
-                                        <td> {{ $item->q3 }} </td>
-                                        <td> {{ $item->q4 }} </td>
-                                        <td>
+                                        <td class="vertical-td"> {{ $item->objective }} </td>
+                                        <td class="vertical-td"> {{ $item->target }} </td>
+                                        <td class="vertical-td"> {{ $item->q1 }} </td>
+                                        <td class="vertical-td"> {{ $item->q2 }} </td>
+                                        <td class="vertical-td"> {{ $item->q3 }} </td>
+                                        <td class="vertical-td"> {{ $item->q4 }} </td>
+                                        <td class="vertical-td">
                                             @php
                                                 $objTrxPic = new RekerPic();
 
@@ -130,7 +130,7 @@
                                                 echo $return_str;
                                             @endphp 
                                         </td>
-                                        <td> 
+                                        <td class="vertical-td"> 
                                             @php
                                                 $objTrxDepart = new RekerDepartment();
 
@@ -173,13 +173,13 @@
                                         @if($ki == 0)
                                             <td class='vertical-td bg-orange-young' rowspan="{{ count($card_cat2) }}"> Learning & Growth </td>
                                         @endif
-                                        <td> {{ $item->objective }} </td>
-                                        <td> {{ $item->target }} </td>
-                                        <td> {{ $item->q1 }} </td>
-                                        <td> {{ $item->q2 }} </td>
-                                        <td> {{ $item->q3 }} </td>
-                                        <td> {{ $item->q4 }} </td>
-                                        <td>
+                                        <td class="vertical-td"> {{ $item->objective }} </td>
+                                        <td class="vertical-td"> {{ $item->target }} </td>
+                                        <td class="vertical-td"> {{ $item->q1 }} </td>
+                                        <td class="vertical-td"> {{ $item->q2 }} </td>
+                                        <td class="vertical-td"> {{ $item->q3 }} </td>
+                                        <td class="vertical-td"> {{ $item->q4 }} </td>
+                                        <td class="vertical-td">
                                             @php
                                                 $objTrxPic = new RekerPic();
 
@@ -200,7 +200,7 @@
                                                 echo $return_str;
                                             @endphp 
                                         </td>
-                                        <td> 
+                                        <td class="vertical-td"> 
                                             @php
                                                 $objTrxDepart = new RekerDepartment();
 
