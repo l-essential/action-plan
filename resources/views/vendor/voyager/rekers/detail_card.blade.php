@@ -237,6 +237,76 @@
                                         </td>
                                     </tr>
                                 @endforeach
+
+                                @foreach ($card_cat3 as $ki => $item)
+                                    <tr>
+                                        @if($ki == 0)
+                                            <td class='vertical-td bg-orange-young' rowspan="{{ count($card_cat3) }}"> Customer & Market </td>
+                                        @endif
+                                        <td class="vertical-td"> {{ $item->objective }} </td>
+                                        <td class="vertical-td"> {{ $item->target }} </td>
+                                        <td class="vertical-td"> {{ $item->q1 }} </td>
+                                        <td class="vertical-td"> {{ $item->q2 }} </td>
+                                        <td class="vertical-td"> {{ $item->q3 }} </td>
+                                        <td class="vertical-td"> {{ $item->q4 }} </td>
+                                        <td class="vertical-td">
+                                            @php
+                                                $objTrxPic = new RekerPic();
+
+                                                $details = $objTrxPic->where('id', $item->id)->get();
+
+                                                $return_str = "";
+                                                foreach ($details as $key => $value) 
+                                                {
+                                                    $objEmp = new MS_Karyawan;
+                                                    $employee = $objEmp->table()->where("NIK", $value->nik)->first();
+                                                    $return_str .= $employee->namaKaryawan;
+
+                                                    if( ($key+1) != count($details) ){
+                                                        $return_str .= ", ";
+                                                    }
+                                                }
+
+                                                echo $return_str;
+                                            @endphp 
+                                        </td>
+                                        <td class="vertical-td"> 
+                                            @php
+                                                $objTrxDepart = new RekerDepartment();
+
+                                                $details = $objTrxDepart->where('id', $item->id)->get();
+
+                                                $return_str = "";
+                                                foreach ($details as $key => $value) 
+                                                {
+                                                    $objDepart = new MS_Department;
+                                                    $depart = $objDepart->table()->where("KodeSeksi", $value->department_id)->first();
+                                                    $return_str .= $depart->namaSeksi;
+
+                                                    if( ($key+1) != count($details) ){
+                                                        $return_str .= ", ";
+                                                    }
+                                                }
+
+                                                echo $return_str;
+                                            @endphp   
+                                        </td>
+                                        <td>
+                                            @if( $objReker->canIEdit($item) )
+                                            <a href="{{ url("admin/rekers/". $item->id . "/edit") }}" class="btn btn-sm btn-primary">
+                                                <i class="voyager-edit"></i> Ubah
+                                            </a>
+                                            @endif
+                                            
+                                            @if( $objReker->canIDelete($item) )
+                                            <a href="javascript:void(0);" title="Hapus" class="btn btn-sm btn-danger pull-right delete" data-id="{{ $item->id }}" id="delete-reker-{{ $item->id }}">
+                                                <i class="voyager-trash"></i> 
+                                                <span class="hidden-xs hidden-sm">Hapus</span>
+                                            </a>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
 

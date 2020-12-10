@@ -52,13 +52,10 @@ class RekerController extends \TCG\Voyager\Http\Controllers\VoyagerBaseControlle
         # pecah 
         $data['card_cat1'] = [];
         $data['card_cat2'] = [];
+        $data['card_cat3'] = [];
         foreach ($data['cards'] as $key => $value) 
         {
-            if($value->category_id == 1){
-                $data['card_cat1'][] = $value;
-            }else{
-                $data['card_cat2'][] = $value;
-            }
+            $data['card_cat'. $value->category_id][] = $value;
         }
 
         $data['ms_periode'] = $objTrxPer->find($periode_id);
