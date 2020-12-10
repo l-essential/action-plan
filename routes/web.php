@@ -41,4 +41,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('rekers/rpt/key', 'Admin\Reker\RekerController@rpt_key');
     Route::get('rekers/{id}/detail_card', 'Admin\Reker\RekerController@detail_card');
+
+    Route::get('reker-routines/rpt/key', 'Admin\Reker\RekerRoutineController@rpt_key');
+    Route::get('reker-routines/{id}/detail_card', 'Admin\Reker\RekerRoutineController@detail_card');
 });

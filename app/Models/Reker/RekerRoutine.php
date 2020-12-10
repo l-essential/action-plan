@@ -2,11 +2,12 @@
 
 use App\Models\Hris\MS_Department;
 use App\Models\Hris\MS_Karyawan;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use TCG\Voyager\Traits\Translatable;
 use Auth;
 
-class Reker extends Model
+class RekerRoutine extends Model
 {
 
     public function primaryKeyInc()
@@ -25,7 +26,7 @@ class Reker extends Model
     {
         $can_access = \ModelInit::canIAccess('delete_'.$this->getTable());
         $periode = session('periode_'.$item->periode_id) == 'N';
-        
+
         if( $can_access && $item->created_by == Auth::user()->id && $periode ){
             return TRUE;
         }else{
@@ -44,7 +45,7 @@ class Reker extends Model
 
     public function getPicReadAttribute()
     {
-        $objTrxPic = new RekerPic();
+        $objTrxPic = new RekerRoutinePic();
 
         $details = $objTrxPic->where('id', $this->id)
                             ->get();
@@ -66,7 +67,7 @@ class Reker extends Model
 
     public function getPicDepartmentReadAttribute()
     {
-        $objTrxDepart = new RekerDepartment();
+        $objTrxDepart = new RekerRoutineDepartment();
 
         $details = $objTrxDepart->where('id', $this->id)
                             ->get();
@@ -84,6 +85,31 @@ class Reker extends Model
         }
 
         return $return_str;
+    }
+
+    public function getCreatedByReadAttribute()
+    {
+        $objUser = new User;
+        $objUser = $objUser::find($this->created_by);
+
+        $objEmp = new MS_Karyawan;
+        $objEmp = $objEmp->detail(['NIK' => $objUser->nik]);
+
+        return $objEmp->namaKaryawan;
+    }
+
+    public function getDepartmentIdReadAttribute()
+    {
+        $objDepart = new MS_Department;
+        $depart = $objDepart->table()->where("KodeSeksi", $this->department_id)->first();
+        return !empty($depart->namaSeksi) ? $depart->namaSeksi : '';
+    }
+
+    public function getDepartmentIdEditAttribute()
+    {
+        $objDepart = new MS_Department;
+        $depart = $objDepart->table()->where("KodeSeksi", $this->department_id)->first();
+        return !empty($depart->namaSeksi) ? $depart->namaSeksi : '';
     }
 
 }
