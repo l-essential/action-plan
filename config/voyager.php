@@ -190,7 +190,7 @@ return [
     // Here you can specify additional assets you would like to be included in the master.blade
     'additional_css' => [
         'plugins/bootstrap-select/main.min.css',
-        'css/admin.css'
+        'css/admin.css?V=1.0.0'
     ],
 
     'additional_js' => [
